@@ -88,7 +88,7 @@ export default function OfflineCoLearnPage() {
       <SlashTitle
         eyebrow="OFFLINE CO-LEARN"
         title="线下共学"
-        subtitle="9门线下课程体系 · 模块化实战共学"
+        subtitle="9门线下课程体系 · 模块化实战共学（逐步上线中）"
       />
 
       {modules.map((mod) => (
