@@ -27,6 +27,7 @@ const dictionaries = {
         stories: '强女的故事',
         game: '闯关游戏',
         leaderboard: '战斗力排行榜',
+        offline: '线下共学',
       },
     },
     common: {
@@ -467,6 +468,7 @@ const dictionaries = {
         stories: '強女的故事',
         game: '闖關遊戲',
         leaderboard: '戰鬥力排行榜',
+        offline: '線下共學',
       },
     },
     common: {
@@ -907,6 +909,7 @@ const dictionaries = {
         stories: 'Strong Women',
         game: 'Challenge Game',
         leaderboard: 'Power Ranking',
+        offline: 'Offline Co-learning',
       },
     },
     common: {
@@ -1347,6 +1350,7 @@ const dictionaries = {
         stories: '強い女性の物語',
         game: 'チャレンジゲーム',
         leaderboard: '戦闘力ランキング',
+        offline: 'オフライン共学',
       },
     },
     common: {

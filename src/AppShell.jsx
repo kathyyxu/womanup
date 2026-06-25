@@ -1,5 +1,5 @@
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { BookOpen, Gamepad2, ShieldCheck, Swords, TimerReset, Trophy } from 'lucide-react';
+import { BookOpen, Gamepad2, ShieldCheck, Swords, TimerReset, Trophy, Users } from 'lucide-react';
 import { LANGUAGES, useI18n } from './i18n.jsx';
 
 const navItems = [
@@ -9,6 +9,7 @@ const navItems = [
   { path: '/women-stories', labelKey: 'shell.nav.stories', icon: BookOpen },
   { path: '/game', labelKey: 'shell.nav.game', icon: Gamepad2 },
   { path: '/leaderboard', labelKey: 'shell.nav.leaderboard', icon: Trophy },
+  { path: '/offline', labelKey: 'shell.nav.offline', icon: Users },
 ];
 
 export default function AppShell() {
@@ -49,7 +50,7 @@ export default function AppShell() {
       </main>
 
       <nav className="fixed bottom-0 left-0 right-0 z-50 border-t-4 border-blood bg-void/95 backdrop-blur">
-        <div className="mx-auto grid max-w-3xl grid-cols-3 gap-1 px-2 py-2 sm:grid-cols-6">
+        <div className="mx-auto grid max-w-3xl grid-cols-3 gap-1 px-2 py-2 sm:grid-cols-7">
           {navItems.map((item) => {
             const Icon = item.icon;
             const active =

@@ -15,6 +15,7 @@ import MatchPage from './pages/MatchPage.jsx';
 import SquadPage from './pages/SquadPage.jsx';
 import TrainingPage from './pages/TrainingPage.jsx';
 import LeaderboardPage from './pages/LeaderboardPage.jsx';
+import OfflineCoLearnPage from './pages/OfflineCoLearnPage.jsx';
 import { LanguageProvider } from './i18n.jsx';
 import './styles.css';
 
@@ -37,6 +38,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path="/squad" element={<SquadPage />} />
             <Route path="/training" element={<TrainingPage />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
+            <Route path="/offline" element={<OfflineCoLearnPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
