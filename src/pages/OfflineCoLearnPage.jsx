@@ -126,6 +126,7 @@ export default function OfflineCoLearnPage() {
         </div>
       ))}
 
+    <div style={{display:'none'}} data-deploy="2026-06-26-v1" />
     </>
   );
 }
