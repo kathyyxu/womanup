@@ -2593,14 +2593,14 @@ button:disabled {
   z-index: 2;
 }
 
-/* top speaker - minimal to maximize text space */
+/* top speaker - very minimal so text fills the phone */
 .p5-phantom-speaker {
-  height: 9px;
+  height: 6px;
   background: #222;
   color: #555;
   font-family: 'Courier New', monospace;
-  font-size: 5px;
-  letter-spacing: 2px;
+  font-size: 4px;
+  letter-spacing: 1px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2622,8 +2622,8 @@ button:disabled {
 }
 .p5-phantom-message {
   font-family: 'Courier New', Impact, 'Arial Black', monospace;
-  font-size: 13px;
-  line-height: 1.18;
+  font-size: 14px;
+  line-height: 1.2;
   font-weight: 900;
   color: #1a1a1a;
   text-align: center;
@@ -2631,7 +2631,7 @@ button:disabled {
 /* prominent ransom fragments - scaled for fill */
 .p5-phantom-screen .ransom-chip,
 .p5-phantom-screen .ransom-hot {
-  font-size: 12px;
+  font-size: 13px;
   padding: 1px 4px;
   margin: 0 1px;
   border-width: 1.5px;
