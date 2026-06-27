@@ -2618,11 +2618,22 @@ button:disabled {
 }
 .p5-phantom-message {
   font-family: 'Courier New', Impact, 'Arial Black', monospace;
-  font-size: 7.2px;
-  line-height: 1.05;
+  font-size: 6.8px;
+  line-height: 1.08;
   font-weight: 900;
   color: #1a1a1a;
   text-align: center;
+}
+/* smaller ransom fragments inside the tiny phone screen */
+.p5-phantom-screen .ransom-chip,
+.p5-phantom-screen .ransom-hot,
+.p5-phantom-screen .ransom-hot-alt {
+  font-size: 6.5px;
+  padding: 1px 3px;
+  margin: 0 1px;
+  border-width: 1.5px;
+  box-shadow: 1px 1px 0 #e61e32;
+  line-height: 1;
 }
 
 /* 字母按键 grid - ransom letter style, no numbers */
