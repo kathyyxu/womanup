@@ -2527,8 +2527,8 @@ button:disabled {
 /* ===== 按键手机 (old-school keypad/feature phone) - flat, upright, P5 red/black ===== */
 .p5-phone,
 .p5-keypad-phone {
-  width: 162px;
-  height: 292px;
+  width: 164px;
+  height: 305px;
   /* FLAT - no tilt, no skew, no perspective */
   transform: none;
   transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
@@ -2692,8 +2692,8 @@ button:disabled {
   z-index: 1;
   color: #f5f5f5;
   font-family: 'Courier New', Impact, 'Arial Black', monospace;
-  font-size: 8.5px;
-  line-height: 1.15;
+  font-size: 9.2px;
+  line-height: 1.12;
   font-weight: 900;
   text-align: center;
   text-shadow: 0.5px 0.5px 0 #e61e32;
@@ -2714,9 +2714,9 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 20px;
+  min-height: 22px;
   font-family: Impact, 'Arial Black', monospace;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 900;
   color: #f5f5f5;
   background: #1f1f1f;
@@ -2743,12 +2743,12 @@ button:disabled {
 
 .p5-key-action {
   grid-column: span 1;
-  font-size: 8px;
+  font-size: 8.5px;
   padding: 1px 0;
   background: #222;
   color: #e61e32;
   border-color: #e61e32;
-  min-height: 18px;
+  min-height: 19px;
 }
 
 /* bottom accent strip */
