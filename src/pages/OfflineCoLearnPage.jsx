@@ -5,53 +5,47 @@ import { useState, useEffect } from 'react';
 export default function OfflineCoLearnPage() {
   const { t, get, language } = useI18n();
   const [showContact, setShowContact] = useState(false);
-  const [wechatId, setWechatId] = useState('');
-  const [contactMsg, setContactMsg] = useState('');
-  const [contactSent, setContactSent] = useState(false);
-  const [wishes, setWishes] = useState({});
-  const [votedCourses, setVotedCourses] = useState(new Set());
+  const [copied, setCopied] = useState(false);
+  const [wishes, setWishes] = useState({ '01':0,'02':0,'03':0,'04':0,'05':0,'06':0,'07':0,'08':0,'09':0 });
   const darkTextNums = new Set(['01', '03', '04', '06', '07', '09']);
 
   useEffect(() => {
-    const wishVersion = 'v4'; // bump this to force clear old counts on next deploy
-    if (localStorage.getItem('offline-wishes-version') !== wishVersion) {
-      localStorage.removeItem('offline-wishes');
-      localStorage.removeItem('offline-voted');
-      localStorage.setItem('offline-wishes-version', wishVersion);
-    }
-    const saved = localStorage.getItem('offline-wishes');
-    if (saved) {
-      setWishes(JSON.parse(saved));
-    } else {
-      // start from zero, accumulate from now on
-      const base = { '01': 0, '02': 0, '03': 0, '04': 0, '05': 0, '06': 0, '07': 0, '08': 0, '09': 0 };
-      setWishes(base);
-      localStorage.setItem('offline-wishes', JSON.stringify(base));
-    }
-    const savedVoted = localStorage.getItem('offline-voted');
-    if (savedVoted) setVotedCourses(new Set(JSON.parse(savedVoted)));
+    const loadWishes = () => {
+      fetch('/api/wishes')
+        .then(r => r.json())
+        .then(data => setWishes(data || { '01':0,'02':0,'03':0,'04':0,'05':0,'06':0,'07':0,'08':0,'09':0 }))
+        .catch(() => {});
+    };
+    loadWishes();
+    // Poll every 8s so other devices see updates quickly
+    const iv = setInterval(loadWishes, 8000);
+    return () => clearInterval(iv);
   }, []);
 
-  const handleWish = (num) => {
-    if (votedCourses.has(num)) return;
-    setVotedCourses((prev) => {
-      const nw = new Set(prev);
-      nw.add(num);
-      localStorage.setItem('offline-voted', JSON.stringify(Array.from(nw)));
-      return nw;
-    });
-    setWishes((prev) => {
-      const newWishes = { ...prev, [num]: (prev[num] || 0) + 1 };
-      localStorage.setItem('offline-wishes', JSON.stringify(newWishes));
-      return newWishes;
-    });
+  const handleWish = async (num) => {
+    try {
+      const res = await fetch('/api/wishes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ num })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        setWishes(data);
+      } else {
+        // fallback local if API fails
+        setWishes((prev) => ({ ...prev, [num]: (prev[num] || 0) + 1 }));
+      }
+    } catch (e) {
+      // fallback
+      setWishes((prev) => ({ ...prev, [num]: (prev[num] || 0) + 1 }));
+    }
   };
 
   let offlineData = get('offline', {});
   let modulesData = offlineData.modules || [];
   let phoneMessage = offlineData.phoneMessage || '';
   let phoneSend = offlineData.phoneSend || '发送';
-  let contactData = offlineData.contact || {};
   const wishText = language === 'en' ? '🔥 Wish' : '🔥 许愿';
   const wishStat = (n) => language === 'en' ? `${n} wished` : `已有${n}人许愿`;
 
@@ -141,19 +135,6 @@ export default function OfflineCoLearnPage() {
     ];
     phoneMessage = 'Have wishes, suggestions,<br /><span class="ransom-hot">want to co-create together</span>, join the community?<br /><span class="ransom-chip">Tell me via WeChat</span>';
     phoneSend = 'Send';
-    contactData = {
-      title: 'Tell me via message',
-      wechatLabel: 'Your WeChat ID *',
-      wechatPlaceholder: 'WeChat ID / number',
-      msgLabel: 'Message / Wish / Suggestion (optional)',
-      msgPlaceholder: 'What you want to say...',
-      submit: 'Send email to math314s@gmail.com',
-      note: 'This will open your email client. Please send.',
-      thanks: 'Thank you!',
-      sent: 'Email client opened. Please send your message.<br />I will contact you via WeChat as soon as possible.',
-      close: 'Close',
-      missingId: 'Please fill in your WeChat ID',
-    };
   }
 
   return (
@@ -212,8 +193,7 @@ export default function OfflineCoLearnPage() {
                   <div className="mt-2 flex items-center justify-between text-xs">
                     <button
                       onClick={() => handleWish(course.num)}
-                      disabled={votedCourses.has(course.num)}
-                      className="border border-[#e61e32] text-[#e61e32] px-2 py-0.5 rounded hover:bg-[#e61e32] hover:text-white transition disabled:opacity-50"
+                      className="border border-[#e61e32] text-[#e61e32] px-2 py-0.5 rounded hover:bg-[#e61e32] hover:text-white transition"
                     >
                       {wishText}
                     </button>
@@ -248,14 +228,9 @@ export default function OfflineCoLearnPage() {
 
       {/* 匿名信风格手机 - 初始右下角固定版本 */}
       <div
-        onClick={() => {
-          setShowContact(true);
-          setContactSent(false);
-          setWechatId('');
-          setContactMsg('');
-        }}
+        onClick={() => setShowContact(true)}
         className="p5-phone p5-phantom-phone p5-fixed cursor-pointer"
-        title="点击许愿或发送消息"
+        title="点击打开联络方式"
       >
         <div className="p5-phone-outer phantom-letter-paper">
           {/* tapes like homepage anonymous letter */}
@@ -286,7 +261,7 @@ export default function OfflineCoLearnPage() {
         </div>
       </div>
 
-      {/* 邮件联系弹窗 - 发邮件模式 */}
+      {/* 联络开发者弹窗 - 简化版 + 一键复制 */}
       {showContact && (
         <div
           className="fixed inset-0 bg-black/95 flex items-center justify-center z-[100]"
@@ -299,71 +274,35 @@ export default function OfflineCoLearnPage() {
           >
             {/* banner */}
             <div className="mx-auto mb-4 inline-flex -skew-x-6 items-center border-[2px] border-[#e61e32] bg-[#e61e32] px-4 py-[1px]">
-              <span className="font-display text-[11px] font-black tracking-[2.5px] text-white">{contactData.title || '来信告诉我'}</span>
+              <span className="font-display text-[11px] font-black tracking-[2.5px] text-white">
+                {language === 'en' ? 'Contact Developer' : '联络开发者'}
+              </span>
             </div>
 
-            {!contactSent ? (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (!wechatId.trim()) {
-                    alert(contactData.missingId || '请填写你的微信ID');
-                    return;
-                  }
-                  const pageTitleForSubject = language === 'en' ? 'Offline Co-learning' : (offlineData.title || '线下共学');
-                  const subject = encodeURIComponent(`Woman Up / ${pageTitleForSubject} 来信 - ${wechatId}`);
-                  const body = encodeURIComponent(
-                    `微信ID: ${wechatId}\n\n消息 / 许愿 / 建议:\n${contactMsg || '（无附加消息）'}\n\n—— 来自 womanup-fight.vercel.app/offline`
-                  );
-                  window.location.href = `mailto:math314s@gmail.com?subject=${subject}&body=${body}`;
-                  setContactSent(true);
+            <div className="text-center py-4">
+              <p className="text-[#f5f5f5] text-base mb-4">
+                {language === 'en' ? 'Contact Developer, WeChat ID: Kathyyxu' : '联络开发者，微信ID：Kathyyxu'}
+              </p>
+
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText('Kathyyxu').then(() => {
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 1800);
+                  });
                 }}
-                className="space-y-4"
+                className="w-full border-[3px] border-[#f5f5f5] bg-[#e61e32] py-2.5 text-[14px] font-black tracking-[1px] text-white active:translate-y-px mb-3"
               >
-                <div>
-                  <label className="block text-xs text-[#c0c0c0] mb-1 font-black tracking-wider">{contactData.wechatLabel || '你的微信ID *'} <span className="text-[#e61e32]">*</span></label>
-                  <input
-                    type="text"
-                    value={wechatId}
-                    onChange={(e) => setWechatId(e.target.value)}
-                    required
-                    placeholder={contactData.wechatPlaceholder || '微信号 / ID'}
-                    className="w-full bg-[#111] border-2 border-[#f5f5f5] text-[#f5f5f5] p-2 text-sm font-bold focus:outline-none focus:border-[#e61e32]"
-                  />
-                </div>
+                {copied ? (language === 'en' ? 'Copied!' : '已复制！') : (language === 'en' ? 'Copy to clipboard' : '一键复制到剪贴板')}
+              </button>
 
-                <div>
-                  <label className="block text-xs text-[#c0c0c0] mb-1 font-black tracking-wider">{contactData.msgLabel || '消息 / 许愿 / 建议（可选）'}</label>
-                  <textarea
-                    value={contactMsg}
-                    onChange={(e) => setContactMsg(e.target.value)}
-                    rows={4}
-                    placeholder={contactData.msgPlaceholder || '想说的话...'}
-                    className="w-full bg-[#111] border-2 border-[#f5f5f5] text-[#f5f5f5] p-2 text-sm font-bold resize-y focus:outline-none focus:border-[#e61e32]"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full border-[3px] border-[#f5f5f5] bg-[#e61e32] py-2.5 text-[14px] font-black tracking-[1px] text-white active:translate-y-px"
-                >
-                  {contactData.submit || '发送邮件到 math314s@gmail.com'}
-                </button>
-
-                <p className="text-[10px] text-center text-[#666]">{contactData.note || '提交后会打开你的邮件客户端，请确认发送。'}</p>
-              </form>
-            ) : (
-              <div className="text-center py-4">
-                <div className="text-[#f5f5f5] text-lg font-black mb-2">{contactData.thanks || '谢谢！'}</div>
-                <p className="text-sm text-[#c0c0c0] mb-4" dangerouslySetInnerHTML={{ __html: contactData.sent || '邮件客户端已打开，请在邮箱中发送你的消息。<br />我会尽快通过微信联系你。' }} />
-                <button
-                  onClick={() => setShowContact(false)}
-                  className="w-full border-[3px] border-[#f5f5f5] bg-[#e61e32] py-2 text-sm font-black tracking-[1px] text-white"
-                >
-                  {contactData.close || '关闭'}
-                </button>
-              </div>
-            )}
+              <button
+                onClick={() => setShowContact(false)}
+                className="w-full border-[3px] border-[#f5f5f5] bg-transparent py-2 text-sm font-black tracking-[1px] text-white"
+              >
+                {language === 'en' ? 'Close' : '关闭'}
+              </button>
+            </div>
 
             {/* bottom wave accent */}
             <div className="absolute -bottom-1 left-0 right-0 h-2.5 opacity-70" style={{ background: 'repeating-linear-gradient(92deg, transparent 0 2px, #e61e32 2px 4px, transparent 4px 7px)' }} />
