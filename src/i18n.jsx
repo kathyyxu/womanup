@@ -458,8 +458,9 @@ const dictionaries = {
     },
     offline: {
       eyebrow: 'OFFLINE CO-LEARN',
-      title: '线下共学',
+      title: '线下共学许愿池',
       subtitle: '9门线下课程体系 · 模块化实战共学（逐步上线中）',
+      intro: '你的许愿会直接决定哪一门先落地。许愿最高的课，会优先排期试课。',
       modules: [
         {
           id: 'module1',
@@ -997,8 +998,9 @@ const dictionaries = {
   },
     offline: {
       eyebrow: 'OFFLINE CO-LEARN',
-      title: '線下共學',
+      title: '線下共學許願池',
       subtitle: '9門線下課程體系 · 模組化實戰共學（逐步上線中）',
+      intro: '你的許願會直接決定哪一門先落地。許願最高的課，會優先排期試課。',
       modules: [
         {
           id: 'module1',
@@ -1532,10 +1534,9 @@ const dictionaries = {
         { id: 'after', title: 'After you have safely left, the most important next step is', options: ['Forget it — do not make a big deal out of it', 'Record the time and place, preserve evidence, and report to the police or contact someone you trust if necessary', 'Immediately post about it on social media and leave the rest alone'], answer: 1, analysis: 'After reaching safety you must complete the evidence, timeline, and help chain. Do not rely only on emotional release, and do not let the incident simply disappear.' },
       ],
     },
-  },
     offline: {
       eyebrow: 'OFFLINE CO-LEARN',
-      title: 'Offline Co-learning',
+      title: 'Offline Co-learning Wish Pool',
       subtitle: '9 Offline Course System · Modular Practical Co-learning (Gradually Rolling Out)',
       modules: [
         {
@@ -1630,6 +1631,7 @@ const dictionaries = {
         missingId: 'Please fill in your WeChat ID',
       },
     },
+  },
   ja: {
     language: { aria: '言語を選択', label: '言語' },
     shell: {
@@ -1970,8 +1972,9 @@ const dictionaries = {
     },
     offline: {
       eyebrow: 'OFFLINE CO-LEARN',
-      title: 'オフライン共学',
+      title: 'オフライン共学 願いプール',
       subtitle: '9つのオフラインコース体系 · モジュール式実践共学（段階的に展開中）',
+      intro: 'あなたの願いがどのコースを最初に実現させるかを直接決めます。願いが最も多いコースが優先的にスケジュールされます。',
       modules: [
         {
           id: 'module1',

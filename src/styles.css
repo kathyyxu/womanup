@@ -2708,3 +2708,18 @@ button:disabled {
 .qr-modal {
   box-shadow: 12px 12px 0 #000, 0 0 0 2px #111;
 }
+
+/* ===== 手机右下角固定 (初始版本) ===== */
+.p5-fixed {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 80;
+}
+
+@media (max-width: 640px) {
+  .p5-fixed {
+    bottom: 16px;
+    right: 16px;
+  }
+}
