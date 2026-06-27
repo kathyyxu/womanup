@@ -130,10 +130,10 @@ export default function OfflineCoLearnPage() {
 
     <div style={{display:'none'}} data-deploy="2026-06-26-v1" />
 
-      {/* 按键手机 - 匿名信风格 (phantom letter ransom aesthetic, flat upright) */}
+      {/* 匿名信风格手机 - 去掉字母按键，中间大文字 + 下方发送按钮 (match homepage phantom letter) */}
       <div
         onClick={() => setShowQR(true)}
-        className="p5-phone p5-phantom-phone fixed bottom-[88px] right-4 cursor-pointer"
+        className="p5-phone p5-phantom-phone fixed bottom-[82px] right-4 cursor-pointer"
         title="点击查看微信二维码"
       >
         <div className="p5-phone-outer phantom-letter-paper">
@@ -144,32 +144,21 @@ export default function OfflineCoLearnPage() {
           {/* red/black accent slices for P5 strength */}
           <div className="p5-phantom-red-slice" aria-hidden="true" />
 
-          {/* inner phone face */}
+          {/* inner phone face - simplified, no keypad */}
           <div className="p5-phantom-face">
-            {/* top "speaker" / header */}
+            {/* top speaker / header */}
             <div className="p5-phantom-speaker">— — —</div>
 
-            {/* message area - strong ransom typography like homepage letter */}
+            {/* big message area */}
             <div className="p5-phantom-screen">
               <div className="p5-phantom-message">
-                <span className="ransom-chip">有</span>许愿、<span className="ransom-hot">建议</span>、一起共创、加入社群？
-                <span className="ransom-hot ransom-hot-alt">欢迎来信</span>
+                有许愿、<span className="ransom-hot">建议</span>、一起共创、加入社群？<span className="ransom-chip">来信告诉我</span>
               </div>
             </div>
 
-            {/* 字母按键 (letter keys) - ransom chip style, no numbers */}
-            <div className="p5-phantom-keypad">
-              {['W','U','P','F','I','G','H','T','J','O','I','N'].map((letter, i) => (
-                <div key={i} className="p5-letter-key ransom-chip" style={{ transform: `rotate(${(i % 3 - 1) * 2}deg)` }}>
-                  {letter}
-                </div>
-              ))}
-            </div>
-
-            {/* bottom action strip - ransom style */}
-            <div className="p5-phantom-actions">
+            {/* bottom 发送 button only */}
+            <div className="p5-phantom-send">
               <span className="ransom-hot">发送</span>
-              <span className="ransom-chip">退出</span>
             </div>
           </div>
         </div>
