@@ -2524,18 +2524,18 @@ button:disabled {
   }
 }
 
-/* ===== Persona 5 style phone widget (rebellious red/black high contrast) ===== */
+/* ===== BIG Persona 5 style phone (clear smartphone, right-bottom, high-contrast red/black) ===== */
 .p5-phone {
-  width: 112px;
-  height: 178px;
-  transform: rotate(-5deg) skewX(-3deg) perspective(420px) rotateY(11deg);
-  transition: transform 120ms ease, filter 120ms ease;
-  filter: drop-shadow(10px 12px 0 #000) drop-shadow(-2px 4px 0 #e61e32);
+  width: 158px;
+  height: 278px;
+  transform: rotate(-4deg) skewX(-2deg) perspective(520px) rotateY(9deg);
+  transition: transform 140ms ease, filter 140ms ease;
+  filter: drop-shadow(14px 16px 0 #000) drop-shadow(-3px 5px 0 #e61e32);
   z-index: 65;
 }
 .p5-phone:hover {
-  transform: rotate(-3deg) skewX(-1deg) perspective(420px) rotateY(5deg) scale(1.03);
-  filter: drop-shadow(14px 16px 0 #000) drop-shadow(-1px 6px 0 #e61e32);
+  transform: rotate(-2deg) skewX(-1deg) perspective(520px) rotateY(4deg) scale(1.02);
+  filter: drop-shadow(18px 20px 0 #000) drop-shadow(-2px 7px 0 #e61e32);
 }
 
 .p5-phone-outer {
@@ -2543,153 +2543,161 @@ button:disabled {
   width: 100%;
   height: 100%;
   background: #111;
-  border: 9px solid #e61e32;
+  border: 11px solid #e61e32;
   box-shadow: 
-    0 0 0 3px #000,
+    0 0 0 4px #000,
     inset 0 0 0 3px #222,
-    9px 9px 0 #000;
-  /* sharp irregular jagged cut via many points */
+    12px 12px 0 #000;
+  /* sharper irregular jagged P5 cut */
   clip-path: polygon(
-    0% 4%, 7% 1%, 13% 6%, 19% 2%, 27% 7%, 33% 0%, 41% 5%, 
-    50% 1%, 58% 8%, 66% 3%, 74% 7%, 81% 2%, 88% 6%, 96% 1%, 100% 5%,
-    100% 18%, 97% 24%, 100% 30%, 95% 37%, 100% 45%, 96% 51%, 100% 58%,
-    97% 66%, 100% 73%, 96% 79%, 100% 86%, 95% 93%, 100% 97%,
-    96% 100%, 82% 97%, 71% 100%, 60% 96%, 49% 100%, 38% 95%, 27% 100%,
-    15% 96%, 6% 100%, 2% 95%, 0% 88%
+    0% 3%, 6% 0, 12% 5%, 20% 1%, 29% 6%, 36% 0, 46% 4%, 
+    55% 0, 63% 7%, 71% 2%, 79% 6%, 86% 1%, 93% 5%, 100% 2%, 100% 8%,
+    100% 16%, 96% 23%, 100% 30%, 95% 38%, 100% 46%, 96% 53%, 100% 61%,
+    96% 69%, 100% 76%, 95% 83%, 100% 89%, 96% 95%, 100% 100%,
+    82% 97%, 68% 100%, 54% 96%, 40% 100%, 26% 96%, 12% 100%, 3% 96%, 0% 89%
   );
   overflow: hidden;
 }
 
-/* halftone black/white dots layer - heavy wave point texture */
+/* dense halftone dots */
 .p5-phone-outer::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image: 
-    radial-gradient(circle, #fff 0.7px, transparent 1.1px),
-    radial-gradient(circle, #000 0.9px, transparent 1.3px);
-  background-size: 3.2px 3.2px, 4.5px 4.5px;
-  background-position: 0 0, 1.6px 1.8px;
-  opacity: 0.55;
+    radial-gradient(circle, #fff 0.8px, transparent 1.2px),
+    radial-gradient(circle, #000 1px, transparent 1.4px);
+  background-size: 3px 3px, 4.2px 4.2px;
+  background-position: 0 0, 1.5px 1.6px;
+  opacity: 0.6;
   mix-blend-mode: screen;
   pointer-events: none;
   z-index: 2;
 }
 
-/* tilted comic grid + collage lines */
+/* tilted comic grid */
 .p5-phone-grid {
   position: absolute;
   inset: 0;
   background: 
-    linear-gradient(132deg, transparent 0 46%, rgba(245,245,245,0.35) 47% 48%, transparent 49% 100%),
-    linear-gradient(48deg, transparent 0 61%, rgba(230,30,50,0.28) 62% 63%, transparent 64% 100%),
-    linear-gradient(90deg, transparent 0 28%, rgba(0,0,0,0.45) 29% 30%, transparent 31% 100%);
-  background-size: 100% 100%, 100% 100%, 11px 11px;
-  transform: skewX(-8deg) rotate(1deg);
-  opacity: 0.9;
+    linear-gradient(130deg, transparent 0 45%, rgba(245,245,245,0.32) 46% 47%, transparent 48%),
+    linear-gradient(52deg, transparent 0 59%, rgba(230,30,50,0.25) 60% 61%, transparent 62%),
+    linear-gradient(90deg, transparent 0 27%, rgba(0,0,0,0.4) 28% 29%, transparent 30%);
+  background-size: 100% 100%, 100% 100%, 10px 10px;
+  transform: skewX(-7deg) rotate(1.5deg);
+  opacity: 0.85;
   z-index: 3;
   pointer-events: none;
   mix-blend-mode: hard-light;
 }
 
-/* red splash liquid / ink splatter */
+/* red liquid splashes */
 .p5-phone-splash {
   position: absolute;
   z-index: 1;
   background: #e61e32;
-  opacity: 0.92;
-  filter: blur(0.3px);
+  opacity: 0.9;
+  filter: blur(0.2px);
 }
 .p5-phone-splash1 {
-  top: -14px; left: -8px;
-  width: 46px; height: 32px;
-  border-radius: 50% 20% 60% 30%;
-  transform: rotate(-24deg);
+  top: -18px; left: -10px;
+  width: 58px; height: 40px;
+  border-radius: 55% 18% 65% 25%;
+  transform: rotate(-26deg);
 }
 .p5-phone-splash2 {
-  bottom: -10px; right: -12px;
-  width: 38px; height: 28px;
-  border-radius: 30% 60% 20% 50%;
-  transform: rotate(19deg);
-  opacity: 0.75;
+  bottom: -14px; right: -16px;
+  width: 48px; height: 34px;
+  border-radius: 28% 62% 22% 48%;
+  transform: rotate(22deg);
+  opacity: 0.7;
 }
 
-/* shattered glass cracks */
+/* shattered cracks */
 .p5-phone-crack {
   position: absolute;
   background: transparent;
-  border-left: 1.5px solid rgba(255,255,255,0.85);
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.6);
+  border-left: 1.5px solid rgba(255,255,255,0.8);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.5);
   z-index: 4;
   pointer-events: none;
 }
-.p5-phone-crack1 { top: 18%; left: 22%; width: 1px; height: 32%; transform: rotate(-28deg); }
-.p5-phone-crack2 { top: 29%; right: 18%; width: 1px; height: 24%; transform: rotate(31deg); }
-.p5-phone-crack3 { top: 54%; left: 32%; width: 1px; height: 18%; transform: rotate(-49deg); }
+.p5-phone-crack1 { top: 16%; left: 18%; width: 1px; height: 34%; transform: rotate(-26deg); }
+.p5-phone-crack2 { top: 27%; right: 15%; width: 1px; height: 26%; transform: rotate(29deg); }
+.p5-phone-crack3 { top: 52%; left: 29%; width: 1px; height: 20%; transform: rotate(-45deg); }
 
-/* ukiyo-e wave texture at bottom (splashy wave lines) */
+/* ukiyo-e wave bottom */
 .p5-phone-wave {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 22px;
+  bottom: 0; left: 0; right: 0;
+  height: 26px;
   background: 
-    repeating-linear-gradient(
-      92deg,
-      transparent 0 3px,
-      #e61e32 3px 5px,
-      transparent 5px 9px,
-      #000 9px 11px,
-      transparent 11px 15px
-    );
-  opacity: 0.7;
+    repeating-linear-gradient(90deg, transparent 0 2px, #e61e32 2px 4px, transparent 4px 8px, #000 8px 10px, transparent 10px 14px);
+  opacity: 0.65;
   z-index: 5;
   pointer-events: none;
-  clip-path: polygon(0 40%, 12% 70%, 25% 35%, 37% 78%, 51% 32%, 64% 65%, 76% 29%, 88% 72%, 100% 38%, 100% 100%, 0 100%);
+  clip-path: polygon(0 42%, 11% 68%, 23% 33%, 36% 76%, 49% 30%, 61% 64%, 74% 27%, 86% 70%, 100% 36%, 100% 100%, 0 100%);
 }
 
+/* main phone inner bezel */
 .p5-phone-bezel {
   position: absolute;
-  inset: 7px;
+  inset: 8px;
   background: #0a0a0a;
-  border: 3px solid #000;
-  box-shadow: inset 0 0 0 2px #333;
+  border: 4px solid #000;
+  box-shadow: inset 0 0 0 3px #222;
   z-index: 6;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
+/* top camera + speaker row */
+.p5-phone-topbar {
+  height: 22px;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 1px solid #333;
+  z-index: 8;
+}
+.p5-phone-camera {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #e61e32;
+  border: 1.5px solid #111;
+  box-shadow: 0 0 0 1px #333;
+}
 .p5-phone-speaker {
-  height: 5px;
+  width: 34px;
+  height: 4px;
   background: #222;
-  margin: 3px auto 1px;
-  width: 28px;
   border-radius: 3px;
-  z-index: 7;
 }
 
+/* the screen */
 .p5-phone-screen {
   flex: 1;
-  margin: 2px 3px 3px;
+  margin: 3px 4px;
   background: #000;
-  border: 2px solid #1a1a1a;
+  border: 3px solid #1a1a1a;
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   z-index: 7;
 }
-
-/* screen has extra halftone + speed feel */
 .p5-phone-screen::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(245,245,245,0.18) 0.8px, transparent 1.1px);
-  background-size: 2.4px 2.4px;
+  background-image: radial-gradient(circle, rgba(245,245,245,0.16) 0.7px, transparent 1px);
+  background-size: 2.2px 2.2px;
   z-index: 1;
 }
 
@@ -2698,34 +2706,58 @@ button:disabled {
   z-index: 2;
   color: #f5f5f5;
   font-family: Impact, 'Arial Black', 'Courier New', monospace;
-  font-size: 6.2px;
-  line-height: 1.05;
+  font-size: 9.5px;
+  line-height: 1.08;
   font-weight: 900;
   text-align: center;
-  padding: 1px 2px;
-  text-shadow: 0.5px 0.5px 0 #e61e32, -0.5px -0.5px 0 #000;
-  transform: rotate(-1.5deg) skewX(-2deg);
-  white-space: nowrap;
+  padding: 2px 4px;
+  text-shadow: 1px 1px 0 #e61e32, -1px -1px 0 #000;
+  transform: rotate(-1deg) skewX(-1.5deg);
+  letter-spacing: 0.2px;
 }
 
-.p5-phone-home {
-  height: 7px;
-  margin: 1px auto 2px;
-  width: 22px;
-  background: #333;
-  border-radius: 2px;
+.p5-phone-hint {
+  position: relative;
+  z-index: 2;
+  margin-top: 6px;
+  font-size: 6.5px;
+  font-weight: 900;
+  color: #e61e32;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 0 #000;
+}
+
+/* bottom home bar area */
+.p5-phone-homebar {
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a1a;
+  border-top: 1px solid #333;
   z-index: 8;
 }
+.p5-phone-home {
+  width: 32px;
+  height: 4px;
+  background: #444;
+  border-radius: 999px;
+}
 
-/* tiny speed lines around the phone for rebellious speed */
+/* speed lines */
 .p5-phone::after {
   content: '';
   position: absolute;
-  inset: -6px -10px;
+  inset: -8px -12px;
   background: 
-    linear-gradient(118deg, transparent 0 34%, rgba(230,30,50,0.6) 35% 36%, transparent 37%),
-    linear-gradient(70deg, transparent 0 58%, rgba(0,0,0,0.5) 59% 60%, transparent 61%);
+    linear-gradient(115deg, transparent 0 32%, rgba(230,30,50,0.55) 33% 34%, transparent 35%),
+    linear-gradient(68deg, transparent 0 55%, rgba(0,0,0,0.45) 56% 57%, transparent 58%);
   pointer-events: none;
   z-index: -1;
-  opacity: 0.75;
+  opacity: 0.7;
+}
+
+/* Modal QR container tweaks */
+.qr-modal {
+  box-shadow: 12px 12px 0 #000, 0 0 0 2px #111;
 }

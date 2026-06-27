@@ -130,21 +130,21 @@ export default function OfflineCoLearnPage() {
 
     <div style={{display:'none'}} data-deploy="2026-06-26-v1" />
 
-      {/* Persona 5 style phone - fixed bottom right, high-contrast red/black, jagged, halftone, comic grid, splashes, waves */}
+      {/* BIG Persona 5 phone at bottom-right - clearly a smartphone, rebellious red/black style */}
       <div
         onClick={() => setShowQR(true)}
-        className="p5-phone fixed bottom-[76px] right-3 cursor-pointer"
+        className="p5-phone fixed bottom-[92px] right-4 cursor-pointer"
         title="点击查看微信二维码"
       >
         <div className="p5-phone-outer">
-          {/* comic grid overlay */}
+          {/* halftone + comic grid */}
           <div className="p5-phone-grid" />
 
-          {/* liquid splashes */}
+          {/* liquid splashes / ink */}
           <div className="p5-phone-splash p5-phone-splash1" />
           <div className="p5-phone-splash p5-phone-splash2" />
 
-          {/* cracks / shattered glass */}
+          {/* shattered glass cracks */}
           <div className="p5-phone-crack p5-phone-crack1" />
           <div className="p5-phone-crack p5-phone-crack2" />
           <div className="p5-phone-crack p5-phone-crack3" />
@@ -152,61 +152,82 @@ export default function OfflineCoLearnPage() {
           {/* ukiyo-e wave */}
           <div className="p5-phone-wave" />
 
+          {/* Phone bezel + screen */}
           <div className="p5-phone-bezel">
-            <div className="p5-phone-speaker" />
+            {/* top earpiece + camera notch area */}
+            <div className="p5-phone-topbar">
+              <div className="p5-phone-camera" />
+              <div className="p5-phone-speaker" />
+            </div>
+
+            {/* main screen with message */}
             <div className="p5-phone-screen">
               <div className="p5-phone-text">
                 有许愿、建议、<br />
                 一起共创、加入社群？<br />
                 欢迎来信
               </div>
+              {/* tiny red wechat hint */}
+              <div className="p5-phone-hint">WECHAT</div>
             </div>
-            <div className="p5-phone-home" />
+
+            {/* bottom home bar */}
+            <div className="p5-phone-homebar">
+              <div className="p5-phone-home" />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* 微信二维码弹窗 - Persona 5 violent aesthetic */}
+      {/* 微信二维码弹窗 - matches your screenshot exactly (P5 red/black, dotted, WECHAT banner, white QR frame) */}
       {showQR && (
         <div
-          className="fixed inset-0 bg-black/90 flex items-center justify-center z-[100]"
+          className="fixed inset-0 bg-black/95 flex items-center justify-center z-[100]"
           onClick={() => setShowQR(false)}
         >
           <div
-            className="relative mx-4 w-full max-w-[300px] border-[6px] border-[#e61e32] bg-[#111] p-5 shadow-[10px_10px_0_#000] overflow-hidden"
-            style={{ clipPath: 'polygon(0 4%, 6% 0, 18% 3%, 29% 0, 41% 5%, 55% 1%, 68% 4%, 82% 0, 94% 3%, 100% 6%, 100% 22%, 97% 31%, 100% 39%, 96% 48%, 100% 56%, 95% 65%, 100% 74%, 96% 83%, 100% 91%, 96% 100%, 79% 97%, 63% 100%, 47% 95%, 33% 100%, 17% 96%, 4% 100%, 0 93%)' }}
+            className="qr-modal relative mx-4 w-full max-w-[310px] border-[7px] border-[#e61e32] bg-[#0a0a0a] p-4 pb-5 shadow-[12px_12px_0_#000] overflow-hidden"
+            style={{ clipPath: 'polygon(0 3%, 5% 0, 16% 4%, 27% 0, 40% 3%, 53% 0, 66% 4%, 78% 1%, 92% 3%, 100% 7%, 100% 19%, 97% 27%, 100% 36%, 96% 45%, 100% 54%, 97% 62%, 100% 71%, 96% 80%, 100% 88%, 96% 97%, 79% 94%, 63% 100%, 46% 95%, 31% 100%, 15% 96%, 3% 100%, 0 90%)' }}
             onClick={e => e.stopPropagation()}
           >
-            {/* red splash header accent */}
-            <div className="absolute -top-3 -right-2 w-16 h-8 bg-[#e61e32] rotate-12" style={{clipPath:'polygon(10% 0,100% 0,100% 70%,40% 100%,0 60%)'}} />
+            {/* red WECHAT banner */}
+            <div className="mx-auto mb-3 inline-flex -skew-x-6 items-center border-[2px] border-[#e61e32] bg-[#e61e32] px-4 py-[1px]">
+              <span className="font-display text-[11px] font-black tracking-[2.5px] text-white">WECHAT</span>
+            </div>
 
-            <div className="text-center">
-              <div className="mb-2 inline-block -skew-x-6 border-2 border-[#e61e32] bg-[#e61e32] px-2 py-0.5 font-display text-xs text-paper tracking-[2px]">WECHAT</div>
-              <div className="relative mx-auto w-64 h-64 border-[5px] border-[#f5f5f5] bg-black overflow-hidden shadow-inner" style={{boxShadow:'inset 0 0 0 3px #000'}}>
+            {/* dotted black QR area with white frame + inner white square for the code */}
+            <div className="mx-auto relative w-[248px] border-[5px] border-[#f5f5f5] bg-[#111] p-3 overflow-hidden"
+                 style={{ backgroundImage: 'radial-gradient(circle, rgba(245,245,245,0.95) 0.8px, transparent 1.2px)', backgroundSize: '3.4px 3.4px' }}>
+              <div className="relative mx-auto w-[210px] h-[210px] bg-white border-[4px] border-[#111] overflow-hidden flex items-center justify-center">
                 <img
                   src="/assets/wechat-qr.jpg"
                   alt="微信二维码"
-                  className="w-full h-full object-contain"
+                  className="w-[190px] h-[190px] object-contain"
                   onError={(e) => {
-                    e.target.outerHTML = '<div class="w-full h-full bg-[#111] flex flex-col items-center justify-center text-[10px] text-[#f5f5f5] font-bold leading-tight p-3 text-center"><div class="mb-1 tracking-widest text-[#e61e32]">YOUR QR</div><div style="width:132px;height:132px;background:#f5f5f5;display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:6px;border:3px solid #000"><span style="background:#000"></span><span></span><span style="background:#000"></span><span style="background:#000"></span><span></span><span style="background:#000"></span><span></span><span></span><span style="background:#000"></span><span></span><span style="background:#000"></span><span style="background:#000"></span><span></span><span style="background:#000"></span><span style="background:#000"></span><span style="background:#000"></span><span></span><span style="background:#000"></span><span></span><span></span><span style="background:#000"></span><span style="background:#000"></span><span></span><span style="background:#000"></span><span></span><span></span><span style="background:#000"></span><span style="background:#000"></span><span style="background:#000"></span><span></span><span style="background:#000"></span><span></span><span style="background:#000"></span><span style="background:#000"></span><span style="background:#000"></span><span></span><span style="background:#000"></span><span></span><span></span><span style="background:#000"></span><span style="background:#000"></span><span style="background:#000"></span><span></span><span style="background:#000"></span><span></span><span style="background:#000"></span><span style="background:#000"></span><span></span><span style="background:#000"></span><span></span><span></span><span style="background:#000"></span><span></span><span style="background:#000"></span><span style="background:#000"></span></div><div class="mt-1.5 text-[8px] opacity-70">请将 wechat-qr.jpg<br/>放到 public/assets/</div></div>';
+                    e.target.outerHTML = '<div style="width:170px;height:170px;background:#111;display:flex;align-items:center;justify-content:center;position:relative"><div style="color:#e61e32;font:900 11px Impact, Arial Black, sans-serif;letter-spacing:1.5px;position:absolute;top:18px;">YOUR QR</div><div style="width:122px;height:122px;background:#fff;display:grid;grid-template-columns:repeat(6,1fr);gap:2px;padding:4px;border:3px solid #111"><span style="background:#111"></span><span></span><span style="background:#111"></span><span style="background:#111"></span><span></span><span style="background:#111"></span><span></span><span style="background:#111"></span><span style="background:#111"></span><span></span><span style="background:#111"></span><span style="background:#111"></span><span></span><span style="background:#111"></span><span style="background:#111"></span><span></span><span style="background:#111"></span><span></span><span style="background:#111"></span><span style="background:#111"></span><span></span><span style="background:#111"></span><span></span><span style="background:#111"></span><span style="background:#111"></span><span></span><span style="background:#111"></span><span style="background:#111"></span><span></span><span style="background:#111"></span><span></span><span style="background:#111"></span><span style="background:#111"></span><span></span><span style="background:#111"></span></div></div>';
                   }}
                 />
-                {/* overlay halftone + crack on qr */}
-                <div className="absolute inset-0 pointer-events-none" style={{backgroundImage:'radial-gradient(circle,#fff 0.6px,transparent 1px)', backgroundSize:'3px 3px', opacity:0.15}} />
+                {/* subtle halftone overlay on real image */}
+                <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.12) 0.6px, transparent 1px)', backgroundSize: '2.8px 2.8px' }} />
               </div>
-              <p className="mt-3 text-sm font-black text-paper tracking-wider">扫码添加微信</p>
-              <p className="text-[10px] text-ash mt-0.5">Kathy · 香港</p>
             </div>
 
+            {/* texts exactly as screenshot */}
+            <div className="mt-3 text-center">
+              <div className="text-[15px] font-black tracking-wider text-[#f5f5f5]">扫码添加微信</div>
+              <div className="mt-0.5 text-xs text-[#c0c0c0]">Kathy · 香港</div>
+            </div>
+
+            {/* big red close button */}
             <button
               onClick={() => setShowQR(false)}
-              className="mt-4 w-full border-3 border-paper bg-[#e61e32] py-2 text-sm font-black tracking-[1px] text-paper active:translate-y-px"
+              className="mt-4 block w-full border-[3px] border-[#f5f5f5] bg-[#e61e32] py-2.5 text-[14px] font-black tracking-[1px] text-white active:translate-y-px"
             >
               关闭 ×
             </button>
 
-            {/* small wave bottom accent */}
-            <div className="absolute -bottom-1 left-0 right-0 h-3 bg-repeat-x" style={{background:'repeating-linear-gradient(95deg,transparent 0 2px,#e61e32 2px 4px,transparent 4px 7px)'}} />
+            {/* bottom wave accent */}
+            <div className="absolute -bottom-1 left-0 right-0 h-2.5 opacity-70" style={{ background: 'repeating-linear-gradient(92deg, transparent 0 2px, #e61e32 2px 4px, transparent 4px 7px)' }} />
           </div>
         </div>
       )}
