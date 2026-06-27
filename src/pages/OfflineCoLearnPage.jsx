@@ -1,5 +1,6 @@
 import { SlashTitle, BrutalCard } from '../components.jsx';
 import { useI18n } from '../i18n.jsx';
+import { useState } from 'react';
 
 const modules = [
   {
@@ -81,6 +82,7 @@ const modules = [
 
 export default function OfflineCoLearnPage() {
   const { t } = useI18n();
+  const [showQR, setShowQR] = useState(false);
   const darkTextNums = new Set(['01', '03', '04', '06', '07', '09']);
 
   return (
@@ -127,6 +129,87 @@ export default function OfflineCoLearnPage() {
       ))}
 
     <div style={{display:'none'}} data-deploy="2026-06-26-v1" />
+
+      {/* Persona 5 style phone - fixed bottom right, high-contrast red/black, jagged, halftone, comic grid, splashes, waves */}
+      <div
+        onClick={() => setShowQR(true)}
+        className="p5-phone fixed bottom-[76px] right-3 cursor-pointer"
+        title="点击查看微信二维码"
+      >
+        <div className="p5-phone-outer">
+          {/* comic grid overlay */}
+          <div className="p5-phone-grid" />
+
+          {/* liquid splashes */}
+          <div className="p5-phone-splash p5-phone-splash1" />
+          <div className="p5-phone-splash p5-phone-splash2" />
+
+          {/* cracks / shattered glass */}
+          <div className="p5-phone-crack p5-phone-crack1" />
+          <div className="p5-phone-crack p5-phone-crack2" />
+          <div className="p5-phone-crack p5-phone-crack3" />
+
+          {/* ukiyo-e wave */}
+          <div className="p5-phone-wave" />
+
+          <div className="p5-phone-bezel">
+            <div className="p5-phone-speaker" />
+            <div className="p5-phone-screen">
+              <div className="p5-phone-text">
+                有许愿、建议、<br />
+                一起共创、加入社群？<br />
+                欢迎来信
+              </div>
+            </div>
+            <div className="p5-phone-home" />
+          </div>
+        </div>
+      </div>
+
+      {/* 微信二维码弹窗 - Persona 5 violent aesthetic */}
+      {showQR && (
+        <div
+          className="fixed inset-0 bg-black/90 flex items-center justify-center z-[100]"
+          onClick={() => setShowQR(false)}
+        >
+          <div
+            className="relative mx-4 w-full max-w-[300px] border-[6px] border-[#e61e32] bg-[#111] p-5 shadow-[10px_10px_0_#000] overflow-hidden"
+            style={{ clipPath: 'polygon(0 4%, 6% 0, 18% 3%, 29% 0, 41% 5%, 55% 1%, 68% 4%, 82% 0, 94% 3%, 100% 6%, 100% 22%, 97% 31%, 100% 39%, 96% 48%, 100% 56%, 95% 65%, 100% 74%, 96% 83%, 100% 91%, 96% 100%, 79% 97%, 63% 100%, 47% 95%, 33% 100%, 17% 96%, 4% 100%, 0 93%)' }}
+            onClick={e => e.stopPropagation()}
+          >
+            {/* red splash header accent */}
+            <div className="absolute -top-3 -right-2 w-16 h-8 bg-[#e61e32] rotate-12" style={{clipPath:'polygon(10% 0,100% 0,100% 70%,40% 100%,0 60%)'}} />
+
+            <div className="text-center">
+              <div className="mb-2 inline-block -skew-x-6 border-2 border-[#e61e32] bg-[#e61e32] px-2 py-0.5 font-display text-xs text-paper tracking-[2px]">WECHAT</div>
+              <div className="relative mx-auto w-64 h-64 border-[5px] border-[#f5f5f5] bg-black overflow-hidden shadow-inner" style={{boxShadow:'inset 0 0 0 3px #000'}}>
+                <img
+                  src="/assets/wechat-qr.jpg"
+                  alt="微信二维码"
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    e.target.outerHTML = '<div class="w-full h-full bg-[#1a1a1a] flex flex-col items-center justify-center text-[10px] text-[#f5f5f5] font-bold leading-tight p-2">请将微信二维码<br/>放到<br/>public/assets/wechat-qr.jpg<br/><span class="text-[8px] opacity-60 mt-1">扫码加入社群</span></div>';
+                  }}
+                />
+                {/* overlay halftone + crack on qr */}
+                <div className="absolute inset-0 pointer-events-none" style={{backgroundImage:'radial-gradient(circle,#fff 0.6px,transparent 1px)', backgroundSize:'3px 3px', opacity:0.15}} />
+              </div>
+              <p className="mt-3 text-sm font-black text-paper tracking-wider">扫码添加微信</p>
+              <p className="text-[10px] text-ash mt-0.5">Kathy · 香港</p>
+            </div>
+
+            <button
+              onClick={() => setShowQR(false)}
+              className="mt-4 w-full border-3 border-paper bg-[#e61e32] py-2 text-sm font-black tracking-[1px] text-paper active:translate-y-px"
+            >
+              关闭 ×
+            </button>
+
+            {/* small wave bottom accent */}
+            <div className="absolute -bottom-1 left-0 right-0 h-3 bg-repeat-x" style={{background:'repeating-linear-gradient(95deg,transparent 0 2px,#e61e32 2px 4px,transparent 4px 7px)'}} />
+          </div>
+        </div>
+      )}
     </>
   );
 }
