@@ -2527,9 +2527,9 @@ button:disabled {
 /* ===== 匿名信风格手机 (homepage phantom-letter style, flat, no letter keys, big text + 发送 button) ===== */
 .p5-phone,
 .p5-phantom-phone {
-  /* compact height */
-  width: 188px;
-  height: 220px;
+  /* more phone-like proportions (taller, narrower) */
+  width: 168px;
+  height: 252px;
   /* completely flat */
   transform: none;
   transition: transform 130ms ease, filter 130ms ease;
@@ -2546,8 +2546,9 @@ button:disabled {
   position: relative;
   width: 100%;
   height: 100%;
-  /* strong anonymous letter paper style from homepage */
-  border: 5px solid #1a1a1a;
+  /* more phone-like frame with paper texture inside */
+  border: 7px solid #1a1a1a;
+  border-radius: 10px;
   background:
     radial-gradient(circle at 14% 18%, rgba(26, 26, 26, 0.14) 0 1px, transparent 1px 8px),
     radial-gradient(circle at 72% 28%, rgba(230, 30, 50, 0.18) 0 2px, transparent 2px 11px),
@@ -2556,11 +2557,11 @@ button:disabled {
   color: #1a1a1a;
   overflow: hidden;
   box-shadow:
-    9px 9px 0 #e61e32,
-    inset 0 0 0 2px rgba(245, 245, 245, 0.5);
-  /* torn edges like phantom-letter-paper */
-  clip-path: polygon(0 5%, 3% 0, 16% 2%, 24% 0, 38% 3%, 49% 0, 63% 2%, 75% 0, 88% 4%, 100% 1%, 98% 18%, 100% 31%, 97% 43%, 100% 58%, 96% 72%, 99% 86%, 95% 100%, 81% 97%, 68% 100%, 55% 96%, 42% 100%, 31% 97%, 18% 100%, 7% 96%, 0 99%, 2% 84%, 0 69%, 3% 55%, 0 42%, 2% 28%);
-  /* neutralize homepage grid + WOMAN UP watermark */
+    8px 8px 0 #e61e32,
+    0 0 0 2px #111,
+    inset 0 0 0 1px rgba(245, 245, 245, 0.4);
+  /* milder clip for recognizable phone rectangle + style */
+  clip-path: polygon(2% 1%, 10% 2%, 20% 1%, 30% 2%, 40% 1%, 50% 2%, 60% 1%, 70% 2%, 80% 1%, 90% 2%, 98% 1%, 99% 8%, 98% 15%, 99% 25%, 98% 35%, 99% 45%, 98% 55%, 99% 65%, 98% 75%, 99% 85%, 98% 92%, 99% 99%, 90% 98%, 75% 99%, 55% 98%, 35% 99%, 15% 98%, 5% 99%, 1% 92%, 2% 80%, 1% 65%, 2% 50%, 1% 35%, 2% 20%, 1% 8%);
   display: block !important;
 }
 .p5-phone-outer::after {
@@ -2584,9 +2585,12 @@ button:disabled {
 /* inner face - tighter to pack content */
 .p5-phantom-face {
   position: absolute;
-  inset: 2px 2px;
-  background: rgba(0,0,0,0.02);
-  border: 3px solid #1a1a1a;
+  inset: 3px 3px;
+  background: #0a0a0a;
+  border: 4px solid #1a1a1a;
+  border-top: 5px solid #222;
+  border-bottom: 5px solid #222;
+  box-shadow: inset 0 0 0 2px #333, 0 0 0 1px #000;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -2595,66 +2599,96 @@ button:disabled {
 
 /* top speaker - ultra minimal */
 .p5-phantom-speaker {
-  height: 3px;
-  background: #222;
+  height: 14px;
+  background: #1a1a1a;
   color: #555;
   font-family: 'Courier New', monospace;
-  font-size: 2px;
-  letter-spacing: 1px;
+  font-size: 5px;
+  letter-spacing: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #111;
+  gap: 6px;
+  border-bottom: 2px solid #111;
   flex-shrink: 0;
+  position: relative;
+}
+.p5-phone-cam {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  background: #e61e32;
+  border: 1px solid #111;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #333;
 }
 
 /* message area - bigger text, minimal padding, fills phone */
 .p5-phantom-screen {
-  margin: 0 2px;
-  padding: 3px 3px;
+  margin: 2px 3px;
+  padding: 8px 5px;
   background: #f8f4e8;
-  border: 2px solid #1a1a1a;
+  border: 3px solid #1a1a1a;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), inset 0 -1px 2px rgba(255,255,255,0.2);
   flex: 1;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   position: relative;
 }
 .p5-phantom-message {
   font-family: 'Courier New', Impact, 'Arial Black', monospace;
-  font-size: 18px;
-  line-height: 1.12;
+  font-size: 19px;
+  line-height: 1.05;
   font-weight: 900;
   color: #1a1a1a;
   text-align: center;
+  width: 100%;
 }
 /* prominent ransom fragments - larger */
 .p5-phantom-screen .ransom-chip,
 .p5-phantom-screen .ransom-hot {
-  font-size: 16px;
+  font-size: 17px;
   padding: 0 2px;
   margin: 0 1px;
   border-width: 1.5px;
   box-shadow: 1.5px 1.5px 0 #e61e32;
-  line-height: 1.05;
+  line-height: 1.02;
 }
 
-/* bottom 发送 button - much bigger and clearer */
+/* bottom home button area - more phone-like */
 .p5-phantom-send {
   background: #1a1a1a;
-  padding: 6px 0;
-  min-height: 22px;
+  padding: 4px 0;
+  min-height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-top: 2px solid #111;
   flex-shrink: 0;
+  position: relative;
+}
+.p5-phantom-send::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
 }
 .p5-phantom-send .ransom-hot {
-  font-size: 12px;
-  padding: 3px 14px;
+  font-size: 10px;
+  padding: 1px 8px;
   letter-spacing: 1px;
-  box-shadow: 2px 2px 0 #e61e32;
+  position: relative;
+  z-index: 1;
+  box-shadow: 1px 1px 0 #e61e32;
 }
 
 /* subtle speed lines */
