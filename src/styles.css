@@ -2629,7 +2629,7 @@ button:disabled {
 /* message area - bigger text, minimal padding, fills phone */
 .p5-phantom-screen {
   margin: 2px 3px;
-  padding: 8px 5px;
+  padding: 5px 3px;
   background: #f8f4e8;
   border: 3px solid #1a1a1a;
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.3), inset 0 -1px 2px rgba(255,255,255,0.2);
@@ -2641,22 +2641,25 @@ button:disabled {
 }
 .p5-phantom-message {
   font-family: 'Courier New', Impact, 'Arial Black', monospace;
-  font-size: 19px;
+  font-size: 22px;
   line-height: 1.05;
   font-weight: 900;
   color: #1a1a1a;
   text-align: center;
   width: 100%;
+  text-shadow: 1px 1px 0 #e61e32;
+  transform: rotate(-1deg);
 }
 /* prominent ransom fragments - larger */
 .p5-phantom-screen .ransom-chip,
 .p5-phantom-screen .ransom-hot {
-  font-size: 17px;
+  font-size: 19px;
   padding: 0 2px;
   margin: 0 1px;
   border-width: 1.5px;
   box-shadow: 1.5px 1.5px 0 #e61e32;
   line-height: 1.02;
+  transform: rotate(1deg);
 }
 
 /* bottom home button area - more phone-like */
@@ -2683,7 +2686,7 @@ button:disabled {
   border-radius: 2px;
 }
 .p5-phantom-send .ransom-hot {
-  font-size: 10px;
+  font-size: 12px;
   padding: 1px 8px;
   letter-spacing: 1px;
   position: relative;
