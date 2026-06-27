@@ -130,14 +130,14 @@ export default function OfflineCoLearnPage() {
 
     <div style={{display:'none'}} data-deploy="2026-06-26-v1" />
 
-      {/* BIG Persona 5 phone at bottom-right - clearly a smartphone, rebellious red/black style */}
+      {/* 按键手机 (feature phone / keypad phone) - flat, upright, P5 red/black aesthetic */}
       <div
         onClick={() => setShowQR(true)}
-        className="p5-phone fixed bottom-[92px] right-4 cursor-pointer"
+        className="p5-phone p5-keypad-phone fixed bottom-[88px] right-4 cursor-pointer"
         title="点击查看微信二维码"
       >
         <div className="p5-phone-outer">
-          {/* halftone + comic grid */}
+          {/* halftone + comic grid (flat) */}
           <div className="p5-phone-grid" />
 
           {/* liquid splashes / ink */}
@@ -152,28 +152,45 @@ export default function OfflineCoLearnPage() {
           {/* ukiyo-e wave */}
           <div className="p5-phone-wave" />
 
-          {/* Phone bezel + screen */}
-          <div className="p5-phone-bezel">
-            {/* top earpiece + camera notch area */}
-            <div className="p5-phone-topbar">
-              <div className="p5-phone-camera" />
-              <div className="p5-phone-speaker" />
+          {/* Keypad phone body */}
+          <div className="p5-keypad-bezel">
+            {/* top speaker grill */}
+            <div className="p5-keypad-speaker">
+              <span>•••</span>
             </div>
 
-            {/* main screen with message */}
-            <div className="p5-phone-screen">
-              <div className="p5-phone-text">
+            {/* small retro screen with the message */}
+            <div className="p5-keypad-screen">
+              <div className="p5-keypad-text">
                 有许愿、建议、<br />
                 一起共创、加入社群？<br />
                 欢迎来信
               </div>
-              {/* tiny red wechat hint */}
-              <div className="p5-phone-hint">WECHAT</div>
             </div>
 
-            {/* bottom home bar */}
-            <div className="p5-phone-homebar">
-              <div className="p5-phone-home" />
+            {/* physical keypad */}
+            <div className="p5-keypad">
+              <div className="p5-key">1</div>
+              <div className="p5-key">2</div>
+              <div className="p5-key">3</div>
+
+              <div className="p5-key">4</div>
+              <div className="p5-key">5</div>
+              <div className="p5-key">6</div>
+
+              <div className="p5-key">7</div>
+              <div className="p5-key">8</div>
+              <div className="p5-key">9</div>
+
+              <div className="p5-key p5-key-star">*</div>
+              <div className="p5-key">0</div>
+              <div className="p5-key p5-key-hash">#</div>
+            </div>
+
+            {/* bottom action bar */}
+            <div className="p5-keypad-actions">
+              <div className="p5-key p5-key-action">发送</div>
+              <div className="p5-key p5-key-action">退出</div>
             </div>
           </div>
         </div>

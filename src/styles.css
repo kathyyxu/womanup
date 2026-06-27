@@ -2524,68 +2524,70 @@ button:disabled {
   }
 }
 
-/* ===== BIG Persona 5 style phone (clear smartphone, right-bottom, high-contrast red/black) ===== */
-.p5-phone {
-  width: 158px;
-  height: 278px;
-  transform: rotate(-4deg) skewX(-2deg) perspective(520px) rotateY(9deg);
-  transition: transform 140ms ease, filter 140ms ease;
-  filter: drop-shadow(14px 16px 0 #000) drop-shadow(-3px 5px 0 #e61e32);
+/* ===== 按键手机 (old-school keypad/feature phone) - flat, upright, P5 red/black ===== */
+.p5-phone,
+.p5-keypad-phone {
+  width: 162px;
+  height: 292px;
+  /* FLAT - no tilt, no skew, no perspective */
+  transform: none;
+  transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
+  filter: drop-shadow(9px 10px 0 #000) drop-shadow(-2px 3px 0 #e61e32);
   z-index: 65;
 }
-.p5-phone:hover {
-  transform: rotate(-2deg) skewX(-1deg) perspective(520px) rotateY(4deg) scale(1.02);
-  filter: drop-shadow(18px 20px 0 #000) drop-shadow(-2px 7px 0 #e61e32);
+.p5-phone:hover,
+.p5-keypad-phone:hover {
+  transform: translateY(-1px);
+  filter: drop-shadow(11px 13px 0 #000) drop-shadow(-1px 4px 0 #e61e32);
 }
 
 .p5-phone-outer {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #111;
-  border: 11px solid #e61e32;
+  background: #0f0f0f;
+  border: 10px solid #e61e32;
   box-shadow: 
     0 0 0 4px #000,
     inset 0 0 0 3px #222,
-    12px 12px 0 #000;
-  /* sharper irregular jagged P5 cut */
+    10px 10px 0 #000;
+  /* straighter but still jagged P5 edges */
   clip-path: polygon(
-    0% 3%, 6% 0, 12% 5%, 20% 1%, 29% 6%, 36% 0, 46% 4%, 
-    55% 0, 63% 7%, 71% 2%, 79% 6%, 86% 1%, 93% 5%, 100% 2%, 100% 8%,
-    100% 16%, 96% 23%, 100% 30%, 95% 38%, 100% 46%, 96% 53%, 100% 61%,
-    96% 69%, 100% 76%, 95% 83%, 100% 89%, 96% 95%, 100% 100%,
-    82% 97%, 68% 100%, 54% 96%, 40% 100%, 26% 96%, 12% 100%, 3% 96%, 0% 89%
+    2% 1%, 8% 4%, 14% 1%, 22% 5%, 29% 1%, 37% 4%, 45% 1%, 
+    54% 4%, 62% 0, 71% 3%, 79% 1%, 87% 4%, 95% 1%, 99% 4%,
+    100% 12%, 97% 20%, 100% 27%, 96% 35%, 100% 43%, 97% 51%, 100% 59%,
+    96% 67%, 100% 75%, 96% 83%, 100% 90%, 97% 97%, 100% 100%,
+    80% 98%, 65% 100%, 50% 97%, 35% 100%, 20% 97%, 8% 100%, 2% 96%, 0% 88%
   );
   overflow: hidden;
 }
 
-/* dense halftone dots */
+/* dense halftone dots (flat) */
 .p5-phone-outer::before {
   content: '';
   position: absolute;
   inset: 0;
   background-image: 
-    radial-gradient(circle, #fff 0.8px, transparent 1.2px),
-    radial-gradient(circle, #000 1px, transparent 1.4px);
-  background-size: 3px 3px, 4.2px 4.2px;
-  background-position: 0 0, 1.5px 1.6px;
-  opacity: 0.6;
+    radial-gradient(circle, #fff 0.7px, transparent 1.1px),
+    radial-gradient(circle, #000 0.9px, transparent 1.25px);
+  background-size: 2.8px 2.8px, 3.8px 3.8px;
+  background-position: 0 0, 1.3px 1.4px;
+  opacity: 0.55;
   mix-blend-mode: screen;
   pointer-events: none;
   z-index: 2;
 }
 
-/* tilted comic grid */
+/* comic grid (no tilt) */
 .p5-phone-grid {
   position: absolute;
   inset: 0;
   background: 
-    linear-gradient(130deg, transparent 0 45%, rgba(245,245,245,0.32) 46% 47%, transparent 48%),
-    linear-gradient(52deg, transparent 0 59%, rgba(230,30,50,0.25) 60% 61%, transparent 62%),
-    linear-gradient(90deg, transparent 0 27%, rgba(0,0,0,0.4) 28% 29%, transparent 30%);
-  background-size: 100% 100%, 100% 100%, 10px 10px;
-  transform: skewX(-7deg) rotate(1.5deg);
-  opacity: 0.85;
+    linear-gradient(125deg, transparent 0 46%, rgba(245,245,245,0.28) 47% 48%, transparent 49%),
+    linear-gradient(55deg, transparent 0 60%, rgba(230,30,50,0.22) 61% 62%, transparent 63%),
+    linear-gradient(90deg, transparent 0 26%, rgba(0,0,0,0.38) 27% 28%, transparent 29%);
+  background-size: 100% 100%, 100% 100%, 9px 9px;
+  opacity: 0.75;
   z-index: 3;
   pointer-events: none;
   mix-blend-mode: hard-light;
@@ -2596,165 +2598,182 @@ button:disabled {
   position: absolute;
   z-index: 1;
   background: #e61e32;
-  opacity: 0.9;
-  filter: blur(0.2px);
+  opacity: 0.88;
+  filter: blur(0.3px);
 }
 .p5-phone-splash1 {
-  top: -18px; left: -10px;
-  width: 58px; height: 40px;
-  border-radius: 55% 18% 65% 25%;
-  transform: rotate(-26deg);
+  top: -16px; left: -9px;
+  width: 52px; height: 36px;
+  border-radius: 50% 18% 62% 28%;
+  transform: rotate(-18deg);
 }
 .p5-phone-splash2 {
-  bottom: -14px; right: -16px;
-  width: 48px; height: 34px;
-  border-radius: 28% 62% 22% 48%;
-  transform: rotate(22deg);
-  opacity: 0.7;
+  bottom: -12px; right: -14px;
+  width: 44px; height: 30px;
+  border-radius: 25% 58% 20% 45%;
+  transform: rotate(15deg);
+  opacity: 0.65;
 }
 
 /* shattered cracks */
 .p5-phone-crack {
   position: absolute;
   background: transparent;
-  border-left: 1.5px solid rgba(255,255,255,0.8);
+  border-left: 1.5px solid rgba(255,255,255,0.75);
   box-shadow: 0 0 0 1px rgba(0,0,0,0.5);
   z-index: 4;
   pointer-events: none;
 }
-.p5-phone-crack1 { top: 16%; left: 18%; width: 1px; height: 34%; transform: rotate(-26deg); }
-.p5-phone-crack2 { top: 27%; right: 15%; width: 1px; height: 26%; transform: rotate(29deg); }
-.p5-phone-crack3 { top: 52%; left: 29%; width: 1px; height: 20%; transform: rotate(-45deg); }
+.p5-phone-crack1 { top: 14%; left: 16%; width: 1px; height: 30%; transform: rotate(-22deg); }
+.p5-phone-crack2 { top: 24%; right: 14%; width: 1px; height: 22%; transform: rotate(25deg); }
+.p5-phone-crack3 { top: 48%; left: 26%; width: 1px; height: 17%; transform: rotate(-38deg); }
 
-/* ukiyo-e wave bottom */
+/* ukiyo-e wave at bottom */
 .p5-phone-wave {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 26px;
+  height: 24px;
   background: 
-    repeating-linear-gradient(90deg, transparent 0 2px, #e61e32 2px 4px, transparent 4px 8px, #000 8px 10px, transparent 10px 14px);
-  opacity: 0.65;
+    repeating-linear-gradient(88deg, transparent 0 2px, #e61e32 2px 4px, transparent 4px 7px, #000 7px 9px, transparent 9px 12px);
+  opacity: 0.6;
   z-index: 5;
   pointer-events: none;
-  clip-path: polygon(0 42%, 11% 68%, 23% 33%, 36% 76%, 49% 30%, 61% 64%, 74% 27%, 86% 70%, 100% 36%, 100% 100%, 0 100%);
+  clip-path: polygon(0 38%, 10% 65%, 22% 30%, 35% 72%, 48% 28%, 60% 62%, 73% 25%, 85% 68%, 100% 34%, 100% 100%, 0 100%);
 }
 
-/* main phone inner bezel */
-.p5-phone-bezel {
+/* main keypad phone bezel - straight flat body */
+.p5-keypad-bezel {
   position: absolute;
-  inset: 8px;
-  background: #0a0a0a;
+  inset: 7px;
+  background: #111;
   border: 4px solid #000;
-  box-shadow: inset 0 0 0 3px #222;
+  box-shadow: inset 0 0 0 2px #222;
   z-index: 6;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
 
-/* top camera + speaker row */
-.p5-phone-topbar {
-  height: 22px;
+/* top speaker grill (classic phone) */
+.p5-keypad-speaker {
+  height: 18px;
   background: #1a1a1a;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  border-bottom: 1px solid #333;
-  z-index: 8;
-}
-.p5-phone-camera {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #e61e32;
-  border: 1.5px solid #111;
-  box-shadow: 0 0 0 1px #333;
-}
-.p5-phone-speaker {
-  width: 34px;
-  height: 4px;
-  background: #222;
-  border-radius: 3px;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #555;
+  border-bottom: 2px solid #222;
+  flex-shrink: 0;
 }
 
-/* the screen */
-.p5-phone-screen {
-  flex: 1;
-  margin: 3px 4px;
-  background: #000;
-  border: 3px solid #1a1a1a;
+/* retro screen (small, above keypad) */
+.p5-keypad-screen {
+  margin: 4px 6px 3px;
+  background: #0a0a0a;
+  border: 3px solid #222;
+  padding: 6px 5px;
+  flex-shrink: 0;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  z-index: 7;
 }
-.p5-phone-screen::before {
+.p5-keypad-screen::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(245,245,245,0.16) 0.7px, transparent 1px);
-  background-size: 2.2px 2.2px;
-  z-index: 1;
+  background-image: radial-gradient(circle, rgba(245,245,245,0.12) 0.6px, transparent 1px);
+  background-size: 2px 2px;
+  z-index: 0;
 }
 
-.p5-phone-text {
+.p5-keypad-text {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   color: #f5f5f5;
-  font-family: Impact, 'Arial Black', 'Courier New', monospace;
-  font-size: 9.5px;
-  line-height: 1.08;
+  font-family: 'Courier New', Impact, 'Arial Black', monospace;
+  font-size: 8.5px;
+  line-height: 1.15;
   font-weight: 900;
   text-align: center;
-  padding: 2px 4px;
-  text-shadow: 1px 1px 0 #e61e32, -1px -1px 0 #000;
-  transform: rotate(-1deg) skewX(-1.5deg);
-  letter-spacing: 0.2px;
+  text-shadow: 0.5px 0.5px 0 #e61e32;
+  letter-spacing: 0.3px;
 }
 
-.p5-phone-hint {
-  position: relative;
-  z-index: 2;
-  margin-top: 6px;
-  font-size: 6.5px;
-  font-weight: 900;
-  color: #e61e32;
-  letter-spacing: 1.5px;
-  text-shadow: 0 0 0 #000;
+/* physical keypad grid */
+.p5-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+  padding: 4px 6px 3px;
+  flex: 1;
+  align-content: start;
 }
 
-/* bottom home bar area */
-.p5-phone-homebar {
-  height: 18px;
+.p5-key {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #1a1a1a;
-  border-top: 1px solid #333;
-  z-index: 8;
-}
-.p5-phone-home {
-  width: 32px;
-  height: 4px;
-  background: #444;
-  border-radius: 999px;
+  min-height: 20px;
+  font-family: Impact, 'Arial Black', monospace;
+  font-size: 10px;
+  font-weight: 900;
+  color: #f5f5f5;
+  background: #1f1f1f;
+  border: 2px solid #000;
+  box-shadow: 
+    inset 0 1px 0 #555,
+    1px 1px 0 #000;
+  text-align: center;
+  user-select: none;
 }
 
-/* speed lines */
-.p5-phone::after {
+.p5-key:active {
+  background: #2a2a2a;
+  box-shadow: inset 0 1px 2px #000;
+  transform: translateY(1px);
+}
+
+/* special keys */
+.p5-key-star,
+.p5-key-hash {
+  font-size: 11px;
+  color: #e61e32;
+}
+
+.p5-key-action {
+  grid-column: span 1;
+  font-size: 8px;
+  padding: 1px 0;
+  background: #222;
+  color: #e61e32;
+  border-color: #e61e32;
+  min-height: 18px;
+}
+
+/* bottom accent strip */
+.p5-keypad-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  padding: 2px 6px 4px;
+  border-top: 2px solid #222;
+  background: #1a1a1a;
+  flex-shrink: 0;
+}
+
+/* speed lines (flatter) */
+.p5-phone::after,
+.p5-keypad-phone::after {
   content: '';
   position: absolute;
-  inset: -8px -12px;
+  inset: -5px -8px;
   background: 
-    linear-gradient(115deg, transparent 0 32%, rgba(230,30,50,0.55) 33% 34%, transparent 35%),
-    linear-gradient(68deg, transparent 0 55%, rgba(0,0,0,0.45) 56% 57%, transparent 58%);
+    linear-gradient(112deg, transparent 0 30%, rgba(230,30,50,0.5) 31% 32%, transparent 33%),
+    linear-gradient(65deg, transparent 0 52%, rgba(0,0,0,0.4) 53% 54%, transparent 55%);
   pointer-events: none;
   z-index: -1;
-  opacity: 0.7;
+  opacity: 0.65;
 }
 
 /* Modal QR container tweaks */
