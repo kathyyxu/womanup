@@ -133,7 +133,7 @@ export default function OfflineCoLearnPage() {
       {/* 匿名信风格手机 - 去掉字母按键，中间大文字 + 下方发送按钮 (match homepage phantom letter) */}
       <div
         onClick={() => setShowQR(true)}
-        className="p5-phone p5-phantom-phone fixed bottom-[82px] right-4 cursor-pointer"
+        className="p5-phone p5-phantom-phone fixed bottom-[75px] right-4 cursor-pointer"
         title="点击查看微信二维码"
       >
         <div className="p5-phone-outer phantom-letter-paper">
@@ -149,10 +149,10 @@ export default function OfflineCoLearnPage() {
             {/* top speaker / header */}
             <div className="p5-phantom-speaker">— — —</div>
 
-            {/* big message area */}
+            {/* big message area - fills the phone */}
             <div className="p5-phantom-screen">
               <div className="p5-phantom-message">
-                有许愿、<span className="ransom-hot">建议</span>、一起共创、加入社群？<span className="ransom-chip">来信告诉我</span>
+                有许愿、建议、<span className="ransom-hot">想要一起共创</span>、加入社群？<span className="ransom-chip">来信告诉我</span>
               </div>
             </div>
 

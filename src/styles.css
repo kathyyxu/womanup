@@ -2527,9 +2527,9 @@ button:disabled {
 /* ===== 匿名信风格手机 (homepage phantom-letter style, flat, no letter keys, big text + 发送 button) ===== */
 .p5-phone,
 .p5-phantom-phone {
-  /* bigger overall */
-  width: 188px;
-  height: 262px;
+  /* enlarged to let text fill more */
+  width: 192px;
+  height: 290px;
   /* completely flat */
   transform: none;
   transition: transform 130ms ease, filter 130ms ease;
@@ -2581,11 +2581,11 @@ button:disabled {
   pointer-events: none;
 }
 
-/* inner face */
+/* inner face - tighter to let message fill the phone */
 .p5-phantom-face {
   position: absolute;
-  inset: 6px 5px;
-  background: rgba(0,0,0,0.05);
+  inset: 4px 3px;
+  background: rgba(0,0,0,0.04);
   border: 3px solid #1a1a1a;
   display: flex;
   flex-direction: column;
@@ -2593,25 +2593,25 @@ button:disabled {
   z-index: 2;
 }
 
-/* top speaker */
+/* top speaker - minimal to maximize text space */
 .p5-phantom-speaker {
-  height: 13px;
+  height: 9px;
   background: #222;
   color: #555;
   font-family: 'Courier New', monospace;
-  font-size: 6.5px;
+  font-size: 5px;
   letter-spacing: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 2px solid #111;
+  border-bottom: 1px solid #111;
   flex-shrink: 0;
 }
 
-/* big screen area for the text */
+/* message area - fills almost the entire phone */
 .p5-phantom-screen {
-  margin: 4px 5px;
-  padding: 8px 6px;
+  margin: 2px 4px;
+  padding: 10px 8px;
   background: #f8f4e8;
   border: 2px solid #1a1a1a;
   flex: 1;
@@ -2622,36 +2622,36 @@ button:disabled {
 }
 .p5-phantom-message {
   font-family: 'Courier New', Impact, 'Arial Black', monospace;
-  font-size: 10.5px;
-  line-height: 1.15;
+  font-size: 13px;
+  line-height: 1.18;
   font-weight: 900;
   color: #1a1a1a;
   text-align: center;
 }
-/* prominent ransom fragments */
+/* prominent ransom fragments - scaled for fill */
 .p5-phantom-screen .ransom-chip,
 .p5-phantom-screen .ransom-hot {
-  font-size: 9.5px;
-  padding: 2px 4px;
+  font-size: 12px;
+  padding: 1px 4px;
   margin: 0 1px;
   border-width: 1.5px;
   box-shadow: 1.5px 1.5px 0 #e61e32;
-  line-height: 1;
+  line-height: 1.05;
 }
 
-/* bottom 发送 button area */
+/* bottom 发送 button - small strip so text fills most of the phone */
 .p5-phantom-send {
   background: #1a1a1a;
-  padding: 5px 0;
+  padding: 3px 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: 2px solid #111;
+  border-top: 1px solid #111;
   flex-shrink: 0;
 }
 .p5-phantom-send .ransom-hot {
-  font-size: 10px;
-  padding: 2px 12px;
+  font-size: 8px;
+  padding: 1px 10px;
   letter-spacing: 1px;
 }
 
