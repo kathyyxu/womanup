@@ -130,67 +130,46 @@ export default function OfflineCoLearnPage() {
 
     <div style={{display:'none'}} data-deploy="2026-06-26-v1" />
 
-      {/* 按键手机 (feature phone / keypad phone) - flat, upright, P5 red/black aesthetic */}
+      {/* 按键手机 - 匿名信风格 (phantom letter ransom aesthetic, flat upright) */}
       <div
         onClick={() => setShowQR(true)}
-        className="p5-phone p5-keypad-phone fixed bottom-[88px] right-4 cursor-pointer"
+        className="p5-phone p5-phantom-phone fixed bottom-[88px] right-4 cursor-pointer"
         title="点击查看微信二维码"
       >
-        <div className="p5-phone-outer">
-          {/* halftone + comic grid (flat) */}
-          <div className="p5-phone-grid" />
+        <div className="p5-phone-outer phantom-letter-paper">
+          {/* tapes like homepage anonymous letter */}
+          <span className="phantom-tape phantom-tape-left" aria-hidden="true" />
+          <span className="phantom-tape phantom-tape-right" aria-hidden="true" />
 
-          {/* liquid splashes / ink */}
-          <div className="p5-phone-splash p5-phone-splash1" />
-          <div className="p5-phone-splash p5-phone-splash2" />
+          {/* red/black accent slices for P5 strength */}
+          <div className="p5-phantom-red-slice" aria-hidden="true" />
 
-          {/* shattered glass cracks */}
-          <div className="p5-phone-crack p5-phone-crack1" />
-          <div className="p5-phone-crack p5-phone-crack2" />
-          <div className="p5-phone-crack p5-phone-crack3" />
+          {/* inner phone face */}
+          <div className="p5-phantom-face">
+            {/* top "speaker" / header */}
+            <div className="p5-phantom-speaker">— — —</div>
 
-          {/* ukiyo-e wave */}
-          <div className="p5-phone-wave" />
-
-          {/* Keypad phone body */}
-          <div className="p5-keypad-bezel">
-            {/* top speaker grill */}
-            <div className="p5-keypad-speaker">
-              <span>•••</span>
-            </div>
-
-            {/* small retro screen with the message */}
-            <div className="p5-keypad-screen">
-              <div className="p5-keypad-text">
-                有许愿、建议、<br />
-                一起共创、加入社群？<br />
-                欢迎来信
+            {/* message area - strong ransom typography like homepage letter */}
+            <div className="p5-phantom-screen">
+              <div className="p5-phantom-message">
+                <span className="ransom-chip">有</span>许愿、<span className="ransom-hot">建议</span>、一起共创、加入社群？
+                <span className="ransom-hot ransom-hot-alt">欢迎来信</span>
               </div>
             </div>
 
-            {/* physical keypad */}
-            <div className="p5-keypad">
-              <div className="p5-key">1</div>
-              <div className="p5-key">2</div>
-              <div className="p5-key">3</div>
-
-              <div className="p5-key">4</div>
-              <div className="p5-key">5</div>
-              <div className="p5-key">6</div>
-
-              <div className="p5-key">7</div>
-              <div className="p5-key">8</div>
-              <div className="p5-key">9</div>
-
-              <div className="p5-key p5-key-star">*</div>
-              <div className="p5-key">0</div>
-              <div className="p5-key p5-key-hash">#</div>
+            {/* 字母按键 (letter keys) - ransom chip style, no numbers */}
+            <div className="p5-phantom-keypad">
+              {['W','U','P','F','I','G','H','T','J','O','I','N'].map((letter, i) => (
+                <div key={i} className="p5-letter-key ransom-chip" style={{ transform: `rotate(${(i % 3 - 1) * 2}deg)` }}>
+                  {letter}
+                </div>
+              ))}
             </div>
 
-            {/* bottom action bar */}
-            <div className="p5-keypad-actions">
-              <div className="p5-key p5-key-action">发送</div>
-              <div className="p5-key p5-key-action">退出</div>
+            {/* bottom action strip - ransom style */}
+            <div className="p5-phantom-actions">
+              <span className="ransom-hot">发送</span>
+              <span className="ransom-chip">退出</span>
             </div>
           </div>
         </div>

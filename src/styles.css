@@ -2524,256 +2524,171 @@ button:disabled {
   }
 }
 
-/* ===== 按键手机 (old-school keypad/feature phone) - flat, upright, P5 red/black ===== */
+/* ===== 匿名信风格按键手机 (match homepage phantom-letter / ransom aesthetic, FLAT upright) ===== */
 .p5-phone,
-.p5-keypad-phone {
-  width: 164px;
-  height: 305px;
-  /* FLAT - no tilt, no skew, no perspective */
+.p5-phantom-phone {
+  width: 166px;
+  height: 298px;
+  /* completely flat */
   transform: none;
-  transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
-  filter: drop-shadow(9px 10px 0 #000) drop-shadow(-2px 3px 0 #e61e32);
+  transition: transform 130ms ease, filter 130ms ease;
+  filter: drop-shadow(10px 11px 0 rgba(230, 30, 50, 0.85)) drop-shadow(-3px 3px 0 #f5f5f5);
   z-index: 65;
 }
 .p5-phone:hover,
-.p5-keypad-phone:hover {
+.p5-phantom-phone:hover {
   transform: translateY(-1px);
-  filter: drop-shadow(11px 13px 0 #000) drop-shadow(-1px 4px 0 #e61e32);
+  filter: drop-shadow(12px 14px 0 rgba(230, 30, 50, 0.9)) drop-shadow(-2px 4px 0 #f5f5f5);
 }
 
 .p5-phone-outer {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #0f0f0f;
-  border: 10px solid #e61e32;
-  box-shadow: 
-    0 0 0 4px #000,
-    inset 0 0 0 3px #222,
-    10px 10px 0 #000;
-  /* straighter but still jagged P5 edges */
-  clip-path: polygon(
-    2% 1%, 8% 4%, 14% 1%, 22% 5%, 29% 1%, 37% 4%, 45% 1%, 
-    54% 4%, 62% 0, 71% 3%, 79% 1%, 87% 4%, 95% 1%, 99% 4%,
-    100% 12%, 97% 20%, 100% 27%, 96% 35%, 100% 43%, 97% 51%, 100% 59%,
-    96% 67%, 100% 75%, 96% 83%, 100% 90%, 97% 97%, 100% 100%,
-    80% 98%, 65% 100%, 50% 97%, 35% 100%, 20% 97%, 8% 100%, 2% 96%, 0% 88%
-  );
+  /* strong anonymous letter paper style from homepage */
+  border: 5px solid #1a1a1a;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(26, 26, 26, 0.14) 0 1px, transparent 1px 8px),
+    radial-gradient(circle at 72% 28%, rgba(230, 30, 50, 0.18) 0 2px, transparent 2px 11px),
+    repeating-linear-gradient(0deg, rgba(26, 26, 26, 0.05) 0 1px, transparent 1px 12px),
+    linear-gradient(135deg, #efe5c8 0%, #f5f5f5 44%, #ded2b2 100%);
+  color: #1a1a1a;
   overflow: hidden;
+  box-shadow:
+    8px 8px 0 #e61e32,
+    inset 0 0 0 2px rgba(245, 245, 245, 0.5);
+  /* torn edges like phantom-letter-paper */
+  clip-path: polygon(0 5%, 3% 0, 16% 2%, 24% 0, 38% 3%, 49% 0, 63% 2%, 75% 0, 88% 4%, 100% 1%, 98% 18%, 100% 31%, 97% 43%, 100% 58%, 96% 72%, 99% 86%, 95% 100%, 81% 97%, 68% 100%, 55% 96%, 42% 100%, 31% 97%, 18% 100%, 7% 96%, 0 99%, 2% 84%, 0 69%, 3% 55%, 0 42%, 2% 28%);
+  /* neutralize the big homepage grid + WOMAN UP watermark inside small phone */
+  display: block !important;
+}
+.p5-phone-outer::after {
+  content: none !important; /* kill the 'WOMAN UP' watermark */
 }
 
-/* dense halftone dots (flat) */
-.p5-phone-outer::before {
-  content: '';
+/* red accent slice like the letter */
+.p5-phantom-red-slice {
   position: absolute;
-  inset: 0;
-  background-image: 
-    radial-gradient(circle, #fff 0.7px, transparent 1.1px),
-    radial-gradient(circle, #000 0.9px, transparent 1.25px);
-  background-size: 2.8px 2.8px, 3.8px 3.8px;
-  background-position: 0 0, 1.3px 1.4px;
-  opacity: 0.55;
-  mix-blend-mode: screen;
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* comic grid (no tilt) */
-.p5-phone-grid {
-  position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(125deg, transparent 0 46%, rgba(245,245,245,0.28) 47% 48%, transparent 49%),
-    linear-gradient(55deg, transparent 0 60%, rgba(230,30,50,0.22) 61% 62%, transparent 63%),
-    linear-gradient(90deg, transparent 0 26%, rgba(0,0,0,0.38) 27% 28%, transparent 29%);
-  background-size: 100% 100%, 100% 100%, 9px 9px;
-  opacity: 0.75;
-  z-index: 3;
-  pointer-events: none;
-  mix-blend-mode: hard-light;
-}
-
-/* red liquid splashes */
-.p5-phone-splash {
-  position: absolute;
-  z-index: 1;
+  left: 0;
+  right: 22%;
+  top: 18%;
+  height: 18px;
   background: #e61e32;
-  opacity: 0.88;
-  filter: blur(0.3px);
-}
-.p5-phone-splash1 {
-  top: -16px; left: -9px;
-  width: 52px; height: 36px;
-  border-radius: 50% 18% 62% 28%;
-  transform: rotate(-18deg);
-}
-.p5-phone-splash2 {
-  bottom: -12px; right: -14px;
-  width: 44px; height: 30px;
-  border-radius: 25% 58% 20% 45%;
-  transform: rotate(15deg);
-  opacity: 0.65;
-}
-
-/* shattered cracks */
-.p5-phone-crack {
-  position: absolute;
-  background: transparent;
-  border-left: 1.5px solid rgba(255,255,255,0.75);
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.5);
-  z-index: 4;
+  opacity: 0.85;
+  transform: rotate(-3deg) skewX(-18deg);
+  z-index: 1;
   pointer-events: none;
 }
-.p5-phone-crack1 { top: 14%; left: 16%; width: 1px; height: 30%; transform: rotate(-22deg); }
-.p5-phone-crack2 { top: 24%; right: 14%; width: 1px; height: 22%; transform: rotate(25deg); }
-.p5-phone-crack3 { top: 48%; left: 26%; width: 1px; height: 17%; transform: rotate(-38deg); }
 
-/* ukiyo-e wave at bottom */
-.p5-phone-wave {
+/* inner face area */
+.p5-phantom-face {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 24px;
-  background: 
-    repeating-linear-gradient(88deg, transparent 0 2px, #e61e32 2px 4px, transparent 4px 7px, #000 7px 9px, transparent 9px 12px);
-  opacity: 0.6;
-  z-index: 5;
-  pointer-events: none;
-  clip-path: polygon(0 38%, 10% 65%, 22% 30%, 35% 72%, 48% 28%, 60% 62%, 73% 25%, 85% 68%, 100% 34%, 100% 100%, 0 100%);
-}
-
-/* main keypad phone bezel - straight flat body */
-.p5-keypad-bezel {
-  position: absolute;
-  inset: 7px;
-  background: #111;
-  border: 4px solid #000;
-  box-shadow: inset 0 0 0 2px #222;
-  z-index: 6;
+  inset: 6px 5px;
+  background: rgba(0,0,0,0.06);
+  border: 3px solid #1a1a1a;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  z-index: 2;
 }
 
-/* top speaker grill (classic phone) */
-.p5-keypad-speaker {
-  height: 18px;
-  background: #1a1a1a;
+/* top speaker / header */
+.p5-phantom-speaker {
+  height: 14px;
+  background: #222;
+  color: #666;
+  font-family: 'Courier New', monospace;
+  font-size: 7px;
+  letter-spacing: 1.5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
-  letter-spacing: 3px;
-  color: #555;
-  border-bottom: 2px solid #222;
+  border-bottom: 2px solid #111;
   flex-shrink: 0;
 }
 
-/* retro screen (small, above keypad) */
-.p5-keypad-screen {
-  margin: 4px 6px 3px;
-  background: #0a0a0a;
-  border: 3px solid #222;
-  padding: 6px 5px;
+/* screen area with strong ransom text */
+.p5-phantom-screen {
+  margin: 3px 4px;
+  padding: 4px 3px;
+  background: #f5f5f5;
+  border: 2px solid #1a1a1a;
   flex-shrink: 0;
   position: relative;
-  overflow: hidden;
 }
-.p5-keypad-screen::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(245,245,245,0.12) 0.6px, transparent 1px);
-  background-size: 2px 2px;
-  z-index: 0;
-}
-
-.p5-keypad-text {
-  position: relative;
-  z-index: 1;
-  color: #f5f5f5;
+.p5-phantom-message {
   font-family: 'Courier New', Impact, 'Arial Black', monospace;
-  font-size: 9.2px;
-  line-height: 1.12;
+  font-size: 7.2px;
+  line-height: 1.05;
   font-weight: 900;
+  color: #1a1a1a;
   text-align: center;
-  text-shadow: 0.5px 0.5px 0 #e61e32;
-  letter-spacing: 0.3px;
 }
 
-/* physical keypad grid */
-.p5-keypad {
+/* 字母按键 grid - ransom letter style, no numbers */
+.p5-phantom-keypad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3px;
-  padding: 4px 6px 3px;
+  gap: 2px;
+  padding: 3px 4px;
   flex: 1;
-  align-content: start;
+  background: #ded2b2;
+  border-top: 2px solid #1a1a1a;
+  border-bottom: 2px solid #1a1a1a;
 }
 
-.p5-key {
+/* individual letter key - scaled ransom-chip look */
+.p5-letter-key {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 22px;
-  font-family: Impact, 'Arial Black', monospace;
-  font-size: 11px;
+  min-height: 17px;
+  font-family: Impact, 'Arial Black', sans-serif;
+  font-size: 9.5px;
   font-weight: 900;
+  line-height: 1;
   color: #f5f5f5;
-  background: #1f1f1f;
-  border: 2px solid #000;
-  box-shadow: 
-    inset 0 1px 0 #555,
-    1px 1px 0 #000;
+  background: #1a1a1a;
+  border: 2px solid #1a1a1a;
+  box-shadow: 2px 2px 0 #e61e32;
+  padding: 1px 2px;
   text-align: center;
   user-select: none;
 }
-
-.p5-key:active {
-  background: #2a2a2a;
-  box-shadow: inset 0 1px 2px #000;
+.p5-letter-key:active {
+  background: #333;
+  box-shadow: 1px 1px 0 #e61e32;
   transform: translateY(1px);
 }
 
-/* special keys */
-.p5-key-star,
-.p5-key-hash {
-  font-size: 11px;
-  color: #e61e32;
-}
-
-.p5-key-action {
-  grid-column: span 1;
-  font-size: 8.5px;
-  padding: 1px 0;
-  background: #222;
-  color: #e61e32;
-  border-color: #e61e32;
-  min-height: 19px;
-}
-
-/* bottom accent strip */
-.p5-keypad-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3px;
-  padding: 2px 6px 4px;
-  border-top: 2px solid #222;
+/* bottom actions - ransom hot style */
+.p5-phantom-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 4px;
   background: #1a1a1a;
+  font-size: 7px;
   flex-shrink: 0;
 }
+.p5-phantom-actions .ransom-hot,
+.p5-phantom-actions .ransom-chip {
+  font-size: 7px;
+  padding: 1px 3px;
+  margin: 0;
+}
 
-/* speed lines (flatter) */
+/* keep some speed / ink accents subtle */
 .p5-phone::after,
-.p5-keypad-phone::after {
+.p5-phantom-phone::after {
   content: '';
   position: absolute;
-  inset: -5px -8px;
-  background: 
-    linear-gradient(112deg, transparent 0 30%, rgba(230,30,50,0.5) 31% 32%, transparent 33%),
-    linear-gradient(65deg, transparent 0 52%, rgba(0,0,0,0.4) 53% 54%, transparent 55%);
+  inset: -4px -6px;
+  background:
+    linear-gradient(108deg, transparent 0 28%, rgba(230,30,50,0.45) 29% 30%, transparent 31%);
   pointer-events: none;
   z-index: -1;
-  opacity: 0.65;
+  opacity: 0.6;
 }
 
 /* Modal QR container tweaks */
