@@ -120,6 +120,16 @@
     "updatedAt": 1779598156026
   },
   {
+    "name": "米奥",
+    "score": 578,
+    "rank": "D",
+    "hours": "2h",
+    "duoScore": 1098,
+    "duoComplete": true,
+    "note": "NOIR-77 系统队友通关 · +520",
+    "updatedAt": 1782638239815
+  },
+  {
     "name": "Nina",
     "score": 458,
     "rank": "B",
@@ -238,16 +248,6 @@
     "duoComplete": false,
     "note": "第二关未通关",
     "updatedAt": 1782551122030
-  },
-  {
-    "name": "米奥",
-    "score": 178,
-    "rank": "D",
-    "hours": "2h",
-    "duoScore": 0,
-    "duoComplete": false,
-    "note": "第二关未通关",
-    "updatedAt": 1782637395141
   },
   {
     "name": "安",
