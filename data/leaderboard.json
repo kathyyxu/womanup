@@ -80,6 +80,16 @@
     "updatedAt": 1779609461165
   },
   {
+    "name": "小欣",
+    "score": 777,
+    "rank": "C",
+    "hours": "5h",
+    "duoScore": 0,
+    "duoComplete": false,
+    "note": "第二关未通关",
+    "updatedAt": 1782923891755
+  },
+  {
     "name": "云",
     "score": 774,
     "rank": "D",
@@ -118,16 +128,6 @@
     "duoComplete": true,
     "note": "NOIR-77 系统队友通关 · +520",
     "updatedAt": 1779598156026
-  },
-  {
-    "name": "小欣",
-    "score": 625,
-    "rank": "D",
-    "hours": "2h",
-    "duoScore": 0,
-    "duoComplete": false,
-    "note": "第二关未通关",
-    "updatedAt": 1782923735743
   },
   {
     "name": "米奥",
