@@ -2720,6 +2720,90 @@ button:disabled {
   z-index: 80;
 }
 
+/* 手机右上角：最小化 */
+.p5-phone-min-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  z-index: 90;
+  width: 28px;
+  height: 28px;
+  border: 3px solid #1a1a1a;
+  background: #e61e32;
+  color: #f5f5f5;
+  font-family: Impact, 'Arial Black', sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #1a1a1a;
+  padding: 0;
+  transform: rotate(-3deg);
+}
+.p5-phone-min-btn:hover {
+  filter: brightness(1.08);
+}
+.p5-phone-min-btn:active {
+  transform: rotate(-3deg) translateY(1px);
+}
+
+/* 最小化后：底栏旁的小胶囊，不挡导航 */
+.p5-phone-mini-dock {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 80;
+  bottom: 72px;
+  right: 12px;
+}
+.p5-phone-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 3px solid #1a1a1a;
+  background: linear-gradient(135deg, #efe5c8 0%, #f5f5f5 50%, #ded2b2 100%);
+  color: #1a1a1a;
+  padding: 6px 10px;
+  font-family: Impact, 'Arial Black', 'Courier New', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #e61e32;
+  transform: rotate(-1deg);
+  max-width: 140px;
+}
+.p5-phone-mini-note {
+  color: #e61e32;
+  font-size: 14px;
+}
+.p5-phone-mini-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.p5-phone-mini-play {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #1a1a1a;
+  background: #e61e32;
+  color: #f5f5f5;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.p5-phone-mini:hover,
+.p5-phone-mini-play:hover {
+  filter: brightness(1.06);
+}
+
 /* 主题曲手机：与线下共学同尺寸 (168x252)，全站常驻 + 同步歌词 */
 .p5-music-phone {
   cursor: default;
@@ -2879,10 +2963,21 @@ button:disabled {
 
 @media (max-width: 640px) {
   .p5-fixed {
-    bottom: 16px;
-    right: 16px;
+    bottom: 72px; /* 默认抬高，避免挡住底部分栏 */
+    right: 12px;
   }
   .p5-dual-phone {
-    bottom: 72px; /* 避开底栏 */
+    bottom: 72px;
+  }
+  .p5-phone-mini-dock {
+    bottom: 70px;
+    right: 10px;
+  }
+  .p5-phone-min-btn {
+    width: 26px;
+    height: 26px;
+    top: -8px;
+    right: -8px;
+    font-size: 18px;
   }
 }

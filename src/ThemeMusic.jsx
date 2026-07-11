@@ -19,6 +19,8 @@ export function ThemeMusicProvider({ children }) {
   const [playing, setPlaying] = useState(false);
   const [audioError, setAudioError] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+  // 最小化状态挂在 Provider，切页保留；音乐不中断
+  const [minimized, setMinimized] = useState(false);
   const audioRef = useRef(null);
   const rafRef = useRef(0);
 
@@ -101,8 +103,10 @@ export function ThemeMusicProvider({ children }) {
       wechatId: WECHAT_ID,
       currentTime,
       lyricWindow,
+      minimized,
+      setMinimized,
     }),
-    [playing, audioError, toggle, currentTime, lyricWindow],
+    [playing, audioError, toggle, currentTime, lyricWindow, minimized],
   );
 
   return <ThemeMusicContext.Provider value={value}>{children}</ThemeMusicContext.Provider>;
@@ -178,11 +182,55 @@ function ContactModal({ open, onClose, language }) {
   );
 }
 
+function MinimizeBtn({ language, onMinimize }) {
+  return (
+    <button
+      type="button"
+      className="p5-phone-min-btn"
+      onClick={(e) => {
+        e.stopPropagation();
+        onMinimize();
+      }}
+      title={language === 'en' ? 'Minimize' : '最小化'}
+      aria-label={language === 'en' ? 'Minimize phone' : '最小化手机'}
+    >
+      −
+    </button>
+  );
+}
+
+function MinimizedDock({ language, playing, onExpand, onToggle }) {
+  return (
+    <div className="p5-phone-mini-dock p5-fixed" role="region" aria-label={language === 'en' ? 'SMS (1)' : '短信（1）'}>
+      <button
+        type="button"
+        className="p5-phone-mini"
+        onClick={onExpand}
+        title={language === 'en' ? 'Expand phone' : '展开手机'}
+      >
+        <span className="p5-phone-mini-note">{playing ? '♪' : '✉'}</span>
+        <span className="p5-phone-mini-text">
+          {language === 'en' ? 'SMS (1)' : '短信（1）'}
+        </span>
+      </button>
+      <button
+        type="button"
+        className="p5-phone-mini-play"
+        onClick={onToggle}
+        aria-pressed={playing}
+        title={playing ? (language === 'en' ? 'Pause' : '暂停') : language === 'en' ? 'Play' : '播放'}
+      >
+        {playing ? '❚❚' : '▶'}
+      </button>
+    </div>
+  );
+}
+
 /** 全局右下角主题曲手机：全站常驻，切换页面不中断播放 */
 export function ThemePhone() {
   const location = useLocation();
   const { language, get } = useI18n();
-  const { playing, audioError, toggle, lyricWindow, currentTime } = useThemeMusic();
+  const { playing, audioError, toggle, lyricWindow, currentTime, minimized, setMinimized } = useThemeMusic();
   const [showContact, setShowContact] = useState(false);
 
   const path = location.pathname;
@@ -203,10 +251,21 @@ export function ThemePhone() {
     return null;
   }, [path, offlineData.phoneMessage, offlineData.phoneSend, language]);
 
-  // 切页时关掉联系弹窗，音乐状态保留在 Provider
+  // 切页时关掉联系弹窗，音乐/最小化状态保留在 Provider
   useEffect(() => {
     setShowContact(false);
   }, [path]);
+
+  if (minimized) {
+    return (
+      <MinimizedDock
+        language={language}
+        playing={playing}
+        onExpand={() => setMinimized(false)}
+        onToggle={toggle}
+      />
+    );
+  }
 
   if (isDual && dualConfig) {
     return (
@@ -216,6 +275,7 @@ export function ThemePhone() {
           title={dualConfig.title}
           aria-label={dualConfig.title}
         >
+          <MinimizeBtn language={language} onMinimize={() => setMinimized(true)} />
           <div className="p5-phone-outer phantom-letter-paper">
             <span className="phantom-tape phantom-tape-left" aria-hidden="true" />
             <span className="phantom-tape phantom-tape-right" aria-hidden="true" />
@@ -272,16 +332,17 @@ export function ThemePhone() {
   }
 
   // 其他页面：主题曲手机 + 同步歌词
-  const idleTitle = language === 'en' ? 'Woman Up Theme' : 'Woman Up 主题曲';
+  const idleTitle = language === 'en' ? 'Woman Up Theme Online' : 'Woman Up 主题曲上线';
   // 未播放且仍在开头：显示品牌标题；播放中或进度前进：显示同步歌词
   const showLyricMode = playing || currentTime > 0.8;
 
   return (
     <div
       className="p5-phone p5-phantom-phone p5-fixed p5-music-phone"
-      title={language === 'en' ? 'Woman Up theme · play/pause' : 'Woman Up 主题曲 · 播放/暂停'}
+      title={language === 'en' ? 'Woman Up theme online · play/pause' : 'Woman Up 主题曲上线 · 播放/暂停'}
       aria-label={language === 'en' ? 'Theme song player' : '主题曲播放器'}
     >
+      <MinimizeBtn language={language} onMinimize={() => setMinimized(true)} />
       <div className="p5-phone-outer phantom-letter-paper">
         <span className="phantom-tape phantom-tape-left" aria-hidden="true" />
         <span className="phantom-tape phantom-tape-right" aria-hidden="true" />
@@ -298,7 +359,7 @@ export function ThemePhone() {
               <div
                 className="p5-phantom-message"
                 dangerouslySetInnerHTML={{
-                  __html: `<span class="ransom-chip">Woman Up</span><br /><span class="ransom-hot">主题曲</span>`,
+                  __html: `<span class="ransom-chip">Woman Up</span><br /><span class="ransom-hot">主题曲上线</span>`,
                 }}
               />
             ) : (
