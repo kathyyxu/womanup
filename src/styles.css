@@ -2750,30 +2750,32 @@ button:disabled {
   transform: rotate(-3deg) translateY(1px);
 }
 
-/* 最小化后：底栏旁的小胶囊，不挡导航 */
-.p5-phone-mini-dock {
+/* 最小化后：贴最右下角小胶囊，尽量不挡列表/分栏 */
+.p5-phone-mini-dock,
+.p5-phone-mini-dock.p5-fixed {
   display: flex;
   align-items: center;
-  gap: 6px;
-  z-index: 80;
-  bottom: 72px;
-  right: 12px;
+  gap: 4px;
+  z-index: 55; /* 略高于底栏，但只占右下角一小块 */
+  bottom: 8px;
+  right: 6px;
+  left: auto;
 }
 .p5-phone-mini {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   border: 3px solid #1a1a1a;
   background: linear-gradient(135deg, #efe5c8 0%, #f5f5f5 50%, #ded2b2 100%);
   color: #1a1a1a;
-  padding: 6px 10px;
+  padding: 5px 8px;
   font-family: Impact, 'Arial Black', 'Courier New', sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
   cursor: pointer;
-  box-shadow: 4px 4px 0 #e61e32;
+  box-shadow: 3px 3px 0 #e61e32;
   transform: rotate(-1deg);
-  max-width: 140px;
+  max-width: 108px;
 }
 .p5-phone-mini-note {
   color: #e61e32;
@@ -2785,12 +2787,12 @@ button:disabled {
   text-overflow: ellipsis;
 }
 .p5-phone-mini-play {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border: 3px solid #1a1a1a;
   background: #e61e32;
   color: #f5f5f5;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
   cursor: pointer;
   box-shadow: 3px 3px 0 #1a1a1a;
@@ -2798,6 +2800,7 @@ button:disabled {
   align-items: center;
   justify-content: center;
   padding: 0;
+  flex-shrink: 0;
 }
 .p5-phone-mini:hover,
 .p5-phone-mini-play:hover {
@@ -2963,15 +2966,29 @@ button:disabled {
 
 @media (max-width: 640px) {
   .p5-fixed {
-    bottom: 72px; /* 默认抬高，避免挡住底部分栏 */
+    bottom: 72px; /* 展开的手机抬高，避免挡住底部分栏 */
     right: 12px;
   }
   .p5-dual-phone {
     bottom: 72px;
   }
-  .p5-phone-mini-dock {
-    bottom: 70px;
-    right: 10px;
+  /* 最小化后贴屏幕最右下角（覆盖 .p5-fixed 的抬高） */
+  .p5-phone-mini-dock,
+  .p5-phone-mini-dock.p5-fixed {
+    bottom: 4px;
+    right: 4px;
+    left: auto;
+    z-index: 55;
+  }
+  .p5-phone-mini {
+    max-width: 96px;
+    padding: 4px 7px;
+    font-size: 10px;
+  }
+  .p5-phone-mini-play {
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
   }
   .p5-phone-min-btn {
     width: 26px;
