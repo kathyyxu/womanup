@@ -186,7 +186,8 @@ export function ThemePhone() {
   const [showContact, setShowContact] = useState(false);
 
   const path = location.pathname;
-  const isDual = path === '/offline' || path === '/women-stories';
+  // 仅线下共学保留双栏（联络内容 + 播放）；强女的故事与其它页一样显示歌词手机
+  const isDual = path === '/offline';
 
   const offlineData = get('offline', {}) || {};
   const dualConfig = useMemo(() => {
@@ -197,13 +198,6 @@ export function ThemePhone() {
           '有许愿、建议、<br /><span class="ransom-hot">想要一起共创</span>、加入社群？<br /><span class="ransom-chip">来信告诉我</span>',
         sendLabel: offlineData.phoneSend || (language === 'en' ? 'Send' : '发送'),
         title: language === 'en' ? 'Contact / Theme song' : '联络 / 主题曲',
-      };
-    }
-    if (path === '/women-stories') {
-      return {
-        message: '<span class="ransom-chip">投稿</span>我心目中的<br /><span class="ransom-hot">强女</span>',
-        sendLabel: language === 'en' ? 'Send' : '发送',
-        title: language === 'en' ? 'Submit / Theme song' : '投稿 / 主题曲',
       };
     }
     return null;
