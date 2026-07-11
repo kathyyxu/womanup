@@ -2720,9 +2720,114 @@ button:disabled {
   z-index: 80;
 }
 
+/* 主题曲手机：与线下共学同尺寸 (168x252)，全站常驻 */
+.p5-music-phone {
+  cursor: default;
+}
+.p5-music-screen {
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 4px;
+}
+.p5-music-hint {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 9px;
+  font-weight: 900;
+  color: #666;
+  text-align: center;
+  line-height: 1.2;
+}
+.p5-music-toggle {
+  width: 100%;
+  border: 0;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+}
+.p5-music-toggle:hover .ransom-hot {
+  filter: brightness(1.08);
+}
+.p5-music-toggle:active {
+  transform: translateY(1px);
+}
+.p5-music-phone .p5-phantom-send .ransom-hot {
+  font-size: 13px;
+  padding: 2px 10px;
+  letter-spacing: 1px;
+}
+
+/* 双栏手机：上内容 / 下主题曲（强女故事 + 线下共学） */
+.p5-dual-phone {
+  width: 168px;
+  height: 300px;
+  cursor: default;
+}
+.p5-dual-face {
+  display: flex;
+  flex-direction: column;
+}
+.p5-dual-top {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  text-align: center;
+}
+.p5-dual-top:hover .p5-phantom-screen {
+  filter: brightness(1.03);
+}
+.p5-dual-screen {
+  flex: 1;
+  min-height: 0;
+  margin: 2px 3px 0;
+  padding: 4px 2px;
+}
+.p5-dual-message {
+  font-size: 15px !important;
+  line-height: 1.1 !important;
+}
+.p5-dual-message .ransom-chip,
+.p5-dual-message .ransom-hot {
+  font-size: 14px !important;
+}
+.p5-dual-send-label {
+  flex-shrink: 0;
+  min-height: 22px;
+  pointer-events: none;
+}
+.p5-dual-send-label .ransom-hot {
+  font-size: 11px;
+  padding: 1px 6px;
+}
+.p5-dual-music {
+  flex-shrink: 0;
+  min-height: 28px;
+  border-top: 2px solid #e61e32 !important;
+  background: #111 !important;
+}
+.p5-dual-music .ransom-hot {
+  font-size: 11px;
+  padding: 2px 8px;
+  letter-spacing: 0.5px;
+}
+
 @media (max-width: 640px) {
   .p5-fixed {
     bottom: 16px;
     right: 16px;
+  }
+  .p5-dual-phone {
+    bottom: 72px; /* 避开底栏 */
   }
 }
