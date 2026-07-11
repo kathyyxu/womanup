@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useI18n } from './i18n.jsx';
+import { THEME_LYRIC_LINES, getLyricWindow } from './themeLyrics.js';
 
 const THEME_SONG_ID = '3400718129';
 const THEME_AUDIO_URL = `https://music.163.com/song/media/outer/url?id=${THEME_SONG_ID}.mp3`;
@@ -17,7 +18,9 @@ export function useThemeMusic() {
 export function ThemeMusicProvider({ children }) {
   const [playing, setPlaying] = useState(false);
   const [audioError, setAudioError] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
   const audioRef = useRef(null);
+  const rafRef = useRef(0);
 
   useEffect(() => {
     const audio = new Audio(THEME_AUDIO_URL);
@@ -29,21 +32,40 @@ export function ThemeMusicProvider({ children }) {
     const onError = () => setAudioError(true);
     const onPause = () => setPlaying(false);
     const onPlay = () => setPlaying(true);
+    const onTimeUpdate = () => setCurrentTime(audio.currentTime || 0);
 
     audio.addEventListener('ended', onEnded);
     audio.addEventListener('error', onError);
     audio.addEventListener('pause', onPause);
     audio.addEventListener('play', onPlay);
+    audio.addEventListener('timeupdate', onTimeUpdate);
 
     return () => {
+      cancelAnimationFrame(rafRef.current);
       audio.pause();
       audio.removeEventListener('ended', onEnded);
       audio.removeEventListener('error', onError);
       audio.removeEventListener('pause', onPause);
       audio.removeEventListener('play', onPlay);
+      audio.removeEventListener('timeupdate', onTimeUpdate);
       audioRef.current = null;
     };
   }, []);
+
+  // 播放时用 rAF 平滑刷新进度，保证歌词同步更跟手
+  useEffect(() => {
+    if (!playing) {
+      cancelAnimationFrame(rafRef.current);
+      return undefined;
+    }
+    const tick = () => {
+      const audio = audioRef.current;
+      if (audio) setCurrentTime(audio.currentTime || 0);
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, [playing]);
 
   const toggle = useCallback(async (event) => {
     event?.stopPropagation?.();
@@ -66,9 +88,21 @@ export function ThemeMusicProvider({ children }) {
     }
   }, []);
 
+  const lyricWindow = useMemo(
+    () => getLyricWindow(THEME_LYRIC_LINES, currentTime),
+    [currentTime],
+  );
+
   const value = useMemo(
-    () => ({ playing, audioError, toggle, wechatId: WECHAT_ID }),
-    [playing, audioError, toggle],
+    () => ({
+      playing,
+      audioError,
+      toggle,
+      wechatId: WECHAT_ID,
+      currentTime,
+      lyricWindow,
+    }),
+    [playing, audioError, toggle, currentTime, lyricWindow],
   );
 
   return <ThemeMusicContext.Provider value={value}>{children}</ThemeMusicContext.Provider>;
@@ -148,7 +182,7 @@ function ContactModal({ open, onClose, language }) {
 export function ThemePhone() {
   const location = useLocation();
   const { language, get } = useI18n();
-  const { playing, audioError, toggle } = useThemeMusic();
+  const { playing, audioError, toggle, lyricWindow, currentTime } = useThemeMusic();
   const [showContact, setShowContact] = useState(false);
 
   const path = location.pathname;
@@ -243,7 +277,11 @@ export function ThemePhone() {
     );
   }
 
-  // 其他页面：纯主题曲手机（与线下共学同尺寸）
+  // 其他页面：主题曲手机 + 同步歌词
+  const idleTitle = language === 'en' ? 'Woman Up Theme' : 'Woman Up 主题曲';
+  // 未播放且仍在开头：显示品牌标题；播放中或进度前进：显示同步歌词
+  const showLyricMode = playing || currentTime > 0.8;
+
   return (
     <div
       className="p5-phone p5-phantom-phone p5-fixed p5-music-phone"
@@ -261,17 +299,34 @@ export function ThemePhone() {
             — — —
           </div>
 
-          <div className="p5-phantom-screen p5-music-screen">
-            <div
-              className="p5-phantom-message"
-              dangerouslySetInnerHTML={{
-                __html: playing
-                  ? '<span class="ransom-chip">♪</span><br /><span class="ransom-hot">播放中</span>'
-                  : '<span class="ransom-chip">Woman Up</span><br /><span class="ransom-hot">主题曲</span>',
-              }}
-            />
+          <div className="p5-phantom-screen p5-music-screen p5-lyric-screen">
+            {!showLyricMode ? (
+              <div
+                className="p5-phantom-message"
+                dangerouslySetInnerHTML={{
+                  __html: `<span class="ransom-chip">Woman Up</span><br /><span class="ransom-hot">主题曲</span>`,
+                }}
+              />
+            ) : (
+              <div className="p5-lyric-box" aria-live="polite">
+                {lyricWindow.prev ? (
+                  <p className="p5-lyric-prev">{lyricWindow.prev}</p>
+                ) : (
+                  <p className="p5-lyric-prev p5-lyric-spacer">&nbsp;</p>
+                )}
+                <p className="p5-lyric-current">{lyricWindow.current || idleTitle}</p>
+                {lyricWindow.next ? (
+                  <p className="p5-lyric-next">{lyricWindow.next}</p>
+                ) : (
+                  <p className="p5-lyric-next p5-lyric-spacer">&nbsp;</p>
+                )}
+              </div>
+            )}
             {audioError ? (
               <p className="p5-music-hint">{language === 'en' ? 'Tap to open NetEase' : '若无声，点按打开网易云'}</p>
+            ) : null}
+            {playing ? (
+              <p className="p5-music-hint p5-lyric-badge">♪ LIVE</p>
             ) : null}
           </div>
 

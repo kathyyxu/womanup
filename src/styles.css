@@ -2720,14 +2720,69 @@ button:disabled {
   z-index: 80;
 }
 
-/* 主题曲手机：与线下共学同尺寸 (168x252)，全站常驻 */
+/* 主题曲手机：与线下共学同尺寸 (168x252)，全站常驻 + 同步歌词 */
 .p5-music-phone {
   cursor: default;
 }
 .p5-music-screen {
   flex-direction: column;
-  gap: 6px;
-  padding: 8px 4px;
+  gap: 4px;
+  padding: 6px 3px;
+}
+.p5-lyric-screen {
+  justify-content: center;
+  overflow: hidden;
+}
+.p5-lyric-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: 0;
+  flex: 1;
+  padding: 0 2px;
+}
+.p5-lyric-prev,
+.p5-lyric-next {
+  margin: 0;
+  width: 100%;
+  font-family: 'Courier New', Impact, 'Arial Black', monospace;
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: center;
+  color: rgba(26, 26, 26, 0.38);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+}
+.p5-lyric-current {
+  margin: 0;
+  width: 100%;
+  font-family: Impact, 'Arial Black', 'Courier New', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+  color: #1a1a1a;
+  text-shadow: 1px 1px 0 #e61e32;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-break: break-word;
+  transform: rotate(-0.5deg);
+}
+.p5-lyric-spacer {
+  min-height: 1.15em;
+}
+.p5-lyric-badge {
+  color: #e61e32 !important;
+  letter-spacing: 1px;
 }
 .p5-music-hint {
   margin: 0;
