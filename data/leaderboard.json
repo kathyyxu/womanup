@@ -260,6 +260,16 @@
     "updatedAt": 1782298071912
   },
   {
+    "name": "牛",
+    "score": 263,
+    "rank": "D",
+    "hours": "2h",
+    "duoScore": 0,
+    "duoComplete": false,
+    "note": "第二关未通关",
+    "updatedAt": 1785772549804
+  },
+  {
     "name": "iris",
     "score": 251,
     "rank": "D",
