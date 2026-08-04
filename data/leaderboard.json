@@ -170,16 +170,6 @@
     "updatedAt": 1785581837499
   },
   {
-    "name": "1",
-    "score": 534,
-    "rank": "S",
-    "hours": "11h",
-    "duoScore": 0,
-    "duoComplete": false,
-    "note": "第二关未通关",
-    "updatedAt": 1783765925138
-  },
-  {
     "name": "纯想",
     "score": 470,
     "rank": "B",
@@ -278,6 +268,16 @@
     "duoComplete": false,
     "note": "第二关未通关",
     "updatedAt": 1782460473982
+  },
+  {
+    "name": "1",
+    "score": 220,
+    "rank": "D",
+    "hours": "0h",
+    "duoScore": 0,
+    "duoComplete": false,
+    "note": "第二关未通关",
+    "updatedAt": 1785853145274
   },
   {
     "name": "yy",
