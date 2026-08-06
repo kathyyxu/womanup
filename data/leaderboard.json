@@ -140,16 +140,6 @@
     "updatedAt": 1779598156026
   },
   {
-    "name": "匿名战士",
-    "score": 608,
-    "rank": "S",
-    "hours": "13h",
-    "duoScore": 0,
-    "duoComplete": false,
-    "note": "第二关未通关",
-    "updatedAt": 1785664257125
-  },
-  {
     "name": "米奥",
     "score": 578,
     "rank": "D",
@@ -268,6 +258,16 @@
     "duoComplete": false,
     "note": "第二关未通关",
     "updatedAt": 1782460473982
+  },
+  {
+    "name": "匿名战士",
+    "score": 220,
+    "rank": "D",
+    "hours": "0h",
+    "duoScore": 0,
+    "duoComplete": false,
+    "note": "第二关未通关",
+    "updatedAt": 1785989911379
   },
   {
     "name": "1",
