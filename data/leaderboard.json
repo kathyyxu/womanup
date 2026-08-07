@@ -220,6 +220,16 @@
     "updatedAt": 1785989964608
   },
   {
+    "name": "xx",
+    "score": 312,
+    "rank": "D",
+    "hours": "2h",
+    "duoScore": 0,
+    "duoComplete": false,
+    "note": "第二关未通关",
+    "updatedAt": 1786072245440
+  },
+  {
     "name": "222",
     "score": 312,
     "rank": "C",
@@ -228,16 +238,6 @@
     "duoComplete": false,
     "note": "第二关未通关",
     "updatedAt": 1785643748483
-  },
-  {
-    "name": "xx",
-    "score": 290,
-    "rank": "D",
-    "hours": "2h",
-    "duoScore": 0,
-    "duoComplete": false,
-    "note": "第二关未通关",
-    "updatedAt": 1786071594243
   },
   {
     "name": "aaa",
