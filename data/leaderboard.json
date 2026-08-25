@@ -200,6 +200,16 @@
     "updatedAt": 1786095545381
   },
   {
+    "name": "白",
+    "score": 352,
+    "rank": "D",
+    "hours": "2h",
+    "duoScore": 0,
+    "duoComplete": false,
+    "note": "第二关未通关",
+    "updatedAt": 1787645346410
+  },
+  {
     "name": "你",
     "score": 352,
     "rank": "C",
@@ -318,16 +328,6 @@
     "duoComplete": false,
     "note": "第二关未通关",
     "updatedAt": 1782460473982
-  },
-  {
-    "name": "白",
-    "score": 246,
-    "rank": "D",
-    "hours": "2h",
-    "duoScore": 0,
-    "duoComplete": false,
-    "note": "第二关未通关",
-    "updatedAt": 1787645213095
   },
   {
     "name": "干",
