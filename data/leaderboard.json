@@ -30,6 +30,16 @@
     "updatedAt": 1779595572080
   },
   {
+    "name": "蒙蒙",
+    "score": 1120,
+    "rank": "S",
+    "hours": "19.5h",
+    "duoScore": 0,
+    "duoComplete": false,
+    "note": "第二关未通关",
+    "updatedAt": 1789540149907
+  },
+  {
     "name": "Aimer",
     "score": 1085,
     "rank": "D",
@@ -138,16 +148,6 @@
     "duoComplete": true,
     "note": "NOIR-77 系统队友通关 · +520",
     "updatedAt": 1779598156026
-  },
-  {
-    "name": "蒙蒙",
-    "score": 620,
-    "rank": "S",
-    "hours": "19.5h",
-    "duoScore": 0,
-    "duoComplete": false,
-    "note": "第二关未通关",
-    "updatedAt": 1789539730006
   },
   {
     "name": "xx",
